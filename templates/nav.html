@@ -1,0 +1,80 @@
+<div id="highlighted-name">
+  <a href="/" class="nav-name-link">Paul LIN</a>
+</div>
+
+<div class="nav">
+  <a href="/resume">Resume</a>
+  <a href="/contact">Contact</a>
+  <a href="/links">Links</a>
+  <a href="/about">About</a>
+</div>
+
+<style>
+  #highlighted-name {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background-color: rgba(255, 255, 0, 0.4);
+    color: black;
+    padding: 80px 120px;
+    font-size: clamp(40px, 6vw, 60px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    font-family: 'Times New Roman ';
+    user-select: none;
+    z-index: 1000;
+  }
+
+  .nav-name-link {
+    color: black;
+    text-decoration: none;
+    display: block;
+  }
+  .nav-name-link:hover {
+    text-decoration: underline;
+  }
+
+  .nav {
+    position: fixed;
+    bottom: 65px;
+    right: 80px;
+    display: flex;
+    gap: 80px;
+    font-family: 'Times New Roman';
+    font-size: 60px;
+    background: dodgerblue;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2),
+                 -2px -2px 0px rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+  }
+
+  .nav a {
+    text-decoration: none;
+    color: purple;
+    letter-spacing: 4px;
+    transition: transform 0.3s, text-shadow 0.3s;
+  }
+
+  .nav a:hover {
+    transform: scale(1.2) rotate(2deg);
+    text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3),
+                 -3px -3px 0px rgba(218, 31, 215, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    #highlighted-name {
+      padding: 40px 60px;
+      font-size: 40px;
+      right: 20px;
+      bottom: 60px;
+    }
+    .nav {
+      bottom: 30px;
+      right: 40px;
+      font-size: 40px;
+      gap: 40px;
+    }
+  }
+</style>

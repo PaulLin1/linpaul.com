@@ -1,0 +1,58 @@
+<!-- header.html -->
+<p id="header">
+        Made in <span class="keyword">Rust</span> & <span class="keyword">JavaScript</span> | 
+  Deployed with <span class="keyword">AWS</span>
+</p>
+
+<div id="github-source">
+  <span>Source Code</span>
+  <span>can</span>
+  <span>be found</span>
+  <span> </span>
+  <span>at </span>
+  <span>https://github.com/PaulLin1/linpaul.com</span>
+</div>
+
+<style>
+  #header {
+
+    padding: 0 0 0 2%;
+    background: rgba(220, 92, 92, 0.6);
+    color: rgb(29, 27, 27);
+    font-size: 20px;
+    border: 0;
+    line-height: 1;            /* remove extra line height */
+  }
+
+  #github-source {
+    opacity: 80%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* start roughly from middle of header horizontally */
+    width: 150px;
+    background: olivedrab;
+    padding: 10px 20px;
+    font-family: 'Times New Roman';
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    line-height: 3;
+    z-index: 1100;
+    /* weird horizontal offset: start from middle of screen horizontally */
+    transform: translateX(-50%);
+    /* add a slight vertical offset to separate from header */
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: nowrap;
+    overflow: visible;
+
+
+  }
+
+  #github-source span {
+    display: block;
+  }
+</style>
