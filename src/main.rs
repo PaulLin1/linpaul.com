@@ -35,8 +35,8 @@ async fn main() {
         .or(links)
         .or(static_);
 
-    println!("Server running on http://0.0.0.0:3000");
+    println!("Server running on http://0.0.0.0:8080");
     warp::serve(routes)
-        .run(([0, 0, 0, 0], 3000))
+        .run(([0, 0, 0, 0], 8080))
         .await;
 }
