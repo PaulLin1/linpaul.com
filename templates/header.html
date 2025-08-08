@@ -1,16 +1,21 @@
 <!-- header.html -->
 <p id="header">
-        Made in <span class="keyword">Rust</span> & <span class="keyword">JavaScript</span> | 
-  Deployed with <span class="keyword">AWS</span>
+        Made with <span class="keyword">Rust</span> & <span class="keyword">JavaScript</span>
 </p>
 
 <div id="github-source">
-  <span>Source Code</span>
-  <span>can</span>
-  <span>be found</span>
-  <span> </span>
-  <span>at </span>
-  <span>https://github.com/PaulLin1/linpaul.com</span>
+  <span>"Child, all the service</span>
+  <p id="second">thou hast done to Tash,</p>
+  <p id="second">I account as service done to me…</p>
+  <p id="second">Not because he and I are one,</p>
+  <p id="second">but because we are opposites…</p>
+  <p id="second">no service which is vile can be done to me,</p>
+  <p id="second">and none which is not vile</p>
+  <p id="second">can be done to him…</p>
+  <p id="second">Therefore if any man</p>
+  <p id="second">swear by Tash and keep his oath…</p>
+  <p id="second">it is by me that he has truly sworn,</p>
+  <p id="second">though he know it not.</p>
 </div>
 
 <style>
@@ -24,35 +29,37 @@
     line-height: 1;            /* remove extra line height */
   }
 
-  #github-source {
+
+
+  #second {
+    background: greenyellow;
+    
     opacity: 80%;
+    padding: 0;
+    margin: 0 0 4px 0; /* <-- adds 4px gap below without background */
+    border: 0;
+    line-height: 1;
+  }
+
+  #github-source {
+      /* opacity: 80%; */
     position: fixed;
     top: 0;
     right: 0;
-    /* start roughly from middle of header horizontally */
-    width: 150px;
-    background: olivedrab;
-    padding: 10px 20px;
-    font-family: 'Times New Roman';
+    padding: 0;
     font-weight: bold;
     font-size: 20px;
     color: black;
     line-height: 3;
     z-index: 1100;
+    padding: 0px;
     /* weird horizontal offset: start from middle of screen horizontally */
-    transform: translateX(-50%);
+    transform: translateX(-30%);
     /* add a slight vertical offset to separate from header */
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    white-space: nowrap;
-    overflow: visible;
-
-
+    align-items: flex-end;
   }
 
-  #github-source span {
-    display: block;
-  }
+
 </style>

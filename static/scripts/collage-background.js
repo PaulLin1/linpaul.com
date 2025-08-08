@@ -26,10 +26,21 @@
     };
   }
 
+  // 1. Preload images into browser cache ASAP
+  images.forEach(src => {
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = src;
+    document.head.appendChild(preload);
+  });
+
+  // 2. Create collage images (lazy load + fixed size)
   images.forEach(src => {
     const img = document.createElement('img');
-    img.src = src;
+    img.src = src; // will instantly load from preload/cache
     img.className = 'collage-img';
+    img.loading = 'lazy'; // don't block initial render
 
     const size = randomSize();
     img.style.width = `${size.width}px`;
