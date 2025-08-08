@@ -1,68 +1,92 @@
 <div id="highlighted-name">
-  <a href="/" class="nav-name-link">Paul LIN</a>
+ <a href="/" class="nav-name-link">Paul LIN</a>
 </div>
-
 <div class="nav">
-  <a href="/resume">Resume</a>
-  <a href="/contact">Contact</a>
-  <a href="/links">Links</a>
-  <a href="/about">About</a>
+<a href="/resume">Resume</a>
+<a href="/contact">Contact</a>
+<a href="/links">Links</a>
+<a href="/about">About</a>
 </div>
-
 <style>
-  #highlighted-name {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    background-color: rgba(255, 255, 0, 0.7);
-    color: black;
-    padding: 40px 70px;
-    font-size: clamp(80px, 6vw, 100px);
-    /* font-family: Arial, Helvetica, sans-serif; */
+#highlighted-name {
+position: fixed;
+bottom: 100px;
+right: 30px;
+background-color: rgba(255, 255, 0, 0.7);
+color: black;
+padding: 40px 70px;
+font-size: clamp(60px, 6vw, 100px);
+user-select: none;
+z-index: 1000;
+ }
+.nav-name-link {
+color: black;
+text-decoration: none;
+display: block;
+ }
+.nav {
+position: fixed;
+bottom: 65px;
+right: 80px;
+display: flex;
+gap: 80px;
+font-size: clamp(40px, 5vw, 60px);
+background: dodgerblue;
+text-transform: uppercase;
+white-space: nowrap;
+z-index: 1000;
+padding: 0.5rem;
+ }
+.nav a {
+text-decoration: none;
+color: purple;
+letter-spacing: 4px;
+ }
 
-    user-select: none;
-    z-index: 1000;
-  }
+/* Mobile optimizations */
+@media (max-width: 768px) {
+#highlighted-name {
+position: static;
+width: 100%;
+text-align: center;
+padding: 2rem;
+font-size: clamp(40px, 8vw, 60px);
+right: auto;
+bottom: auto;
+margin-bottom: 1rem;
+ }
+.nav {
+position: static;
+flex-direction: column;
+width: 100%;
+text-align: center;
+font-size: clamp(24px, 6vw, 40px);
+gap: 1rem;
+bottom: auto;
+right: auto;
+padding: 2rem;
+align-items: center;
+ }
+.nav a {
+letter-spacing: 2px;
+padding: 0.5rem;
+ }
+ }
 
-  .nav-name-link {
-    color: black;
-    text-decoration: none;
-    display: block;
-  }
-
-
-  .nav {
-    position: fixed;
-    bottom: 65px;
-    right: 80px;
-    display: flex;
-    gap: 80px;
-      /* font-family: Arial, Helvetica, sans-serif; */
-    font-size: 60px;
-    background: dodgerblue;
-    text-transform: uppercase;
-    white-space: nowrap;
-    z-index: 1000;
-  }
-
-  .nav a {
-    text-decoration: none;
-    color: purple;
-    letter-spacing: 4px;
-  }
-
-  @media (max-width: 768px) {
-    #highlighted-name {
-      padding: 40px 60px;
-      font-size: 40px;
-      right: 20px;
-      bottom: 60px;
-    }
-    .nav {
-      bottom: 30px;
-      right: 40px;
-      font-size: 40px;
-      gap: 40px;
-    }
-  }
+/* Very small devices */
+@media (max-width: 480px) {
+#highlighted-name {
+padding: 1.5rem;
+font-size: clamp(32px, 10vw, 48px);
+ }
+.nav {
+padding: 1.5rem;
+font-size: clamp(20px, 7vw, 32px);
+gap: 0.8rem;
+ }
+.nav a {
+letter-spacing: 1px;
+padding: 0.3rem;
+ }
+ }
 </style>

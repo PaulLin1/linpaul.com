@@ -1,94 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Paul Lin - Resume</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
-  <script src="/static/scripts/collage-background.js" defer></script>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: 'Arial Black', Gadget, sans-serif;
-      background-image: url('/static/imgs/background.jpg');
-      background-repeat: repeat;
-      background-size: 743px 380px;
-      background-position: top left;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paul Lin - Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="/static/scripts/collage-background.js" defer></script>
+<style>
+html, body {
+height: 100%;
+margin: 0;
+font-family: 'Arial Black', Gadget, sans-serif;
+background-image: url('/static/imgs/background.jpg');
+background-repeat: repeat;
+background-size: 743px 380px;
+background-position: top left;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+ }
+#header-placeholder {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+ }
+#nav-placeholder {
+position: fixed;
+bottom: 50px;
+right: 80px;
+z-index: 1000;
+ }
+/* Contact info box */
+#contact-info {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(0, 0, 0);
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 700;
+font-size: clamp(16px, 3vw, 18px);
+color: #ffffff;
+text-align: center;
+user-select: none;
+z-index: 1000;
+line-height: 1;
+min-width: 220px;
+padding: 1rem;
+box-sizing: border-box;
+ }
+#contact-info .phone {
+font-size: clamp(20px, 4vw, 22px);
+margin-bottom: 6px;
+ }
+#contact-info .email {
+font-size: clamp(24px, 5vw, 30px);
+font-weight: 400;
+letter-spacing: 0.5px;
+user-select: text;
+word-break: break-all;
+ }
 
-    #header-placeholder {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
+/* Mobile optimizations */
+@media (max-width: 768px) {
+html, body {
+background-size: 400px 200px;
+padding: 1rem;
+ }
+#header-placeholder {
+position: static;
+width: 100%;
+margin: 0 auto 1rem auto;
+ }
+#nav-placeholder {
+position: static;
+margin: 1rem auto;
+right: auto;
+bottom: auto;
+text-align: center;
+order: 2;
+ }
+#contact-info {
+position: static;
+transform: none;
+top: auto;
+left: auto;
+width: 100%;
+max-width: 400px;
+min-width: auto;
+margin: 2rem auto;
+order: 1;
+ }
+ }
 
-    #nav-placeholder {
-      position: fixed;
-      bottom: 50px;
-      right: 80px;
-      z-index: 1000;
-    }
-
-    /* Contact info box */
-    #contact-info {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0);
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      color: #ffffff;
-      text-align: center;
-      user-select: none;
-      z-index: 1000;
-      line-height: 1;
-      min-width: 220px;
-    }
-
-
-
-    #contact-info .phone {
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
-
-    #contact-info .email {
-      font-size: 30px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      user-select: text;
-    }
-  </style>
+/* Very small devices */
+@media (max-width: 480px) {
+html, body {
+background-size: 300px 150px;
+padding: 0.5rem;
+ }
+#contact-info {
+max-width: 90%;
+padding: 1.5rem;
+ }
+#contact-info .email {
+font-size: clamp(20px, 6vw, 26px);
+letter-spacing: 0.2px;
+ }
+ }
+</style>
 </head>
 <body>
-  <div id="header-placeholder"></div>
-
-  <div id="nav-placeholder"></div>
-
-  <div id="contact-info">
-    <div class="email">linp40182 at gmail.com</div>
-  </div>
-
-  <script>
-    fetch('/header')
-      .then(res => res.ok ? res.text() : Promise.reject('Failed to load header.html'))
-      .then(html => document.getElementById('header-placeholder').innerHTML = html)
-      .catch(console.error);
-
-    fetch('/nav')
-      .then(res => res.ok ? res.text() : Promise.reject('Failed to load nav.html'))
-      .then(html => document.getElementById('nav-placeholder').innerHTML = html)
-      .catch(console.error);
-  </script>
+<div id="header-placeholder"></div>
+<div id="contact-info">
+<div class="email">linp40182 at gmail.com</div>
+</div>
+<div id="nav-placeholder"></div>
+<script>
+fetch('/header')
+ .then(res => res.ok ? res.text() : Promise.reject('Failed to load header.html'))
+ .then(html => document.getElementById('header-placeholder').innerHTML = html)
+ .catch(console.error);
+fetch('/nav')
+ .then(res => res.ok ? res.text() : Promise.reject('Failed to load nav.html'))
+ .then(html => document.getElementById('nav-placeholder').innerHTML = html)
+ .catch(console.error);
+</script>
 </body>
 </html>
