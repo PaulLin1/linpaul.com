@@ -14,7 +14,7 @@
     return Array.from(numbers);
   }
 
-  const randomNums = getRandomUniqueNumbers(18, 150);
+  const randomNums = getRandomUniqueNumbers(18, 173);
   const images = randomNums.map(n => `/static/imgs/${n}.jpg`);
 
   function randomSize() {
