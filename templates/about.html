@@ -21,6 +21,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 0;
     }
 
     #header-placeholder {
@@ -37,12 +38,10 @@
       right: 80px;
       z-index: 1000;
     }
-
     #contact-info {
       position: fixed;
-      top: clamp(10rem, 2vw, 15rem);    /* scales between 16px and ~40px */
+      top: clamp(10rem, 2vw, 15rem);
       left: clamp(1rem, 2vw, 2.5rem);
-      background: rgba(0, 0, 0);
 
       font-family: Arial, Helvetica, sans-serif;
       font-size: larger;
@@ -51,21 +50,57 @@
       text-align: left;
       user-select: none;
       z-index: 1000;
+      padding: 0;
 
-      max-width: 50vw;    /* max 50% of viewport width */
-      min-width: clamp(15rem, 25vw, 30rem); /* min width scales */
+      max-width: 50vw;
+      min-width: clamp(15rem, 25vw, 30rem);
       box-sizing: border-box;
       display: block;
       overflow-wrap: break-word;
+      line-height: 1.2;
     }
 
-    /* On smaller devices, make position static and center */
+    /* Remove margin/padding from children and line-height override */
+    #contact-info * {
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1.2 !important;
+    }
+
+    /* The .e paragraphs - black background tight to text with padding for readability */
+    .e {
+      background: black;
+      padding: 0.15em 0.3em;  /* vertical and horizontal padding */
+      margin-bottom: 0.5em;   /* gap below paragraphs without background */
+      border: none;
+      line-height: 1.2;
+      display: inline-block;  /* shrink to fit text width */
+      user-select: text;      /* allow text selection */
+    }
+
+    /* Responsive adjustments */
     @media (max-width: 768px) {
       #contact-info {
-        position: static;
+        position: static;     /* stop fixed positioning for mobile */
         max-width: 90vw;
         font-size: clamp(0.9rem, 3vw, 1.2rem);
+        margin: 1rem auto;    /* center container */
         text-align: left;
+        padding: 0 1rem;      /* add horizontal padding on small devices */
+      }
+
+      #nav-placeholder {
+        position: static;
+        margin: 1rem auto;
+        right: auto;
+        bottom: auto;
+        text-align: center;
+      }
+
+      #header-placeholder {
+        position: static;
+        width: 100%;
+        margin: 0 auto 1rem auto;
       }
     }
 
@@ -77,9 +112,8 @@
     }
 
 
-    #contact-info p.hi {
-      user-select: text;
-    }
+
+    
   </style>
 </head>
 <body>
@@ -88,12 +122,18 @@
   <div id="nav-placeholder"></div>
 
   <div id="contact-info">
-    <p class="hi">
-      The website is built using the Warp framework in Rust, with random images displayed using vanilla JavaScript. To improve performance, the images are preloaded and lazy loaded. For the CI/CD pipeline, I use GitHub Actions to build a Docker container and deploy it via Fly.io. I chose Fly.io because it offers a simple and cost-effective solution that fits the scale of this project well.
-    </p>
-    <p class="hi">
-      This design is inspired by art.yale.edu. A classmate in a UX class once used it as an example of a bad website. I completely disagreed. I love how its eccentric, collage-like layout pops over the duplicated image. The chair’s strange patterns allow the colors to live in unusual shapes, giving it a lively, DIY feel. It showed me that sometimes effort driving the intent is more important than the intent itself. The puke-like yellows were chosen with as much care as the eggshell whites on a trendy tech site. Thus the quote on the top right.
-    </p>
+      <p class="e">The website is built using the Warp framework in Rust, with random images</p>
+      <p class="e">displayed using vanilla JavaScript. To enhance performance, images are both</p>
+      <p class="e">preloaded and lazy loaded. For the CI/CD pipeline, I use GitHub Actions to build a</p>
+      <p class="e">Docker container and deploy it through Fly.io. I chose Fly.io because it provides a</p>
+      <p class="e">simple, cost-effective solution that perfectly fits the scale of this project.</p>
+      <p class="e">The website’s design draws inspiration from art.yale.edu. In a UX class, a</p>
+      <p class="e">classmate once dismissed it as an example of poor design, but I saw it differently.</p>
+      <p class="e">I like how its eccentric, collage-like layout stands out over the duplicated image.</p>
+      <p class="e">The chair’s unusual patterns allow colors to inhabit unexpected shapes, giving the</p>
+      <p class="e">piece a lively, DIY feel. The bold, puke-like yellows were chosen with the same</p>
+      <p class="e">deliberate care as the subtle eggshell whites found on a sleek tech site. It taught</p>
+      <p class="e">me that sometimes the effort behind an idea matters more than the idea itself.</p>
   </div>
 
   <script>
