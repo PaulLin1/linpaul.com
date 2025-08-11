@@ -1,5 +1,4 @@
 (function() {
-  // Avoid duplicates if included multiple times
   if (document.getElementById("collage-background")) return;
 
   const container = document.createElement('div');
@@ -26,7 +25,7 @@
     };
   }
 
-  // 1. Preload images into browser cache ASAP
+  // Preload images
   images.forEach(src => {
     const preload = document.createElement('link');
     preload.rel = 'preload';
@@ -35,16 +34,28 @@
     document.head.appendChild(preload);
   });
 
-  // 2. Create collage images (lazy load + fixed size)
   images.forEach(src => {
-    const img = document.createElement('img');
-    img.src = src; // will instantly load from preload/cache
-    img.className = 'collage-img';
-    img.loading = 'lazy'; // don't block initial render
-
     const size = randomSize();
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.className = 'collage-img';
+    img.loading = 'lazy';
     img.style.width = `${size.width}px`;
     img.style.height = `${size.height}px`;
+
+    // On error, replace img with a blank box div of the same size
+    img.onerror = function() {
+      const blankBox = document.createElement('div');
+      blankBox.style.width = img.style.width;
+      blankBox.style.height = img.style.height;
+      blankBox.style.backgroundColor = 'transparent'; // transparent background
+      blankBox.style.display = 'inline-block';
+      // no border, fully transparent box
+
+      img.replaceWith(blankBox);
+    };
+
 
     container.appendChild(img);
   });
