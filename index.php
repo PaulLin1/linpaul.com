@@ -3,7 +3,7 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $routes = [
     '/' => './templates/index.html',
-    '/resume' => './templates/resume.html',
+    '/blog' => './templates/blog.html',
     '/contact' => './templates/contact.html',
     '/about' => './templates/about.html',
     '/header' => './templates/header.html',
