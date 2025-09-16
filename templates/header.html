@@ -1,95 +1,49 @@
-<!-- header.html -->
-<p id="header">
- Made with <span class="keyword">PHP</span> & <span class="keyword">JavaScript</span>
+<p id="made-with">
+    Made with <span class="keyword">PHP</span> & <span class="keyword">JavaScript</span>
 </p>
-<div id="github-source">
-<span>"Child, all the service</span>
-<p id="second">thou hast done to Tash,</p>
-<p id="second">I account as service done to me…</p>
-<p id="second">Not because he and I are one,</p>
-<p id="second">but because we are opposites…</p>
-<p id="second">no service which is vile can be done to me,</p>
-<p id="second">and none which is not vile</p>
-<p id="second">can be done to him…</p>
-<p id="second">Therefore if any man</p>
-<p id="second">swear by Tash and keep his oath…</p>
-<p id="second">it is by me that he has truly sworn,</p>
-<p id="second">though he know it not.</p>
+<div id="quote">
+    <span>"Child, all the service</span>
+    <p class="quote-line">thou hast done to Tash,</p>
+    <p class="quote-line">I account as service done to me…</p>
+    <p class="quote-line">Not because he and I are one,</p>
+    <p class="quote-line">but because we are opposites…</p>
+    <p class="quote-line">no service which is vile can be done to me,</p>
+    <p class="quote-line">and none which is not vile</p>
+    <p class="quote-line">can be done to him…</p>
+    <p class="quote-line">Therefore if any man</p>
+    <p class="quote-line">swear by Tash and keep his oath…</p>
+    <p class="quote-line">it is by me that he has truly sworn,</p>
+    <p class="quote-line">though he know it not.</p>
 </div>
 <style>
-#header {
-padding: 0 0 0 2%;
-background: rgba(220, 92, 92, 0.6);
-color: rgb(29, 27, 27);
-font-size: clamp(16px, 3vw, 20px);
-border: 0;
-line-height: 1;
- }
-#second {
-background: greenyellow;
-opacity: 80%;
-padding: 0;
-margin: 0 0 1% 0;
-border: 0;
-line-height: 1;
- }
-#github-source {
-position: fixed;
-top: 0;
-right: 0;
-padding: 0;
-font-weight: bold;
-font-size: clamp(14px, 2.5vw, 20px);
-color: black;
-line-height: 3;
-z-index: 1100;
-transform: translateX(-30%);
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-max-width: 70%;
- }
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-#header {
-font-size: clamp(14px, 4vw, 18px);
-padding: 0.5rem;
-text-align: center;
- }
-#github-source {
-position: static;
-transform: none;
-max-width: 100%;
-width: 100%;
-font-size: clamp(12px, 3vw, 16px);
-line-height: 1.2;
-align-items: center;
-text-align: center;
-margin-top: 1rem;
- }
-#github-source span {
-margin-bottom: 0.5rem;
-display: block;
- }
-#second {
-margin: 0 0 0.5rem 0;
-padding: 0.2rem;
-text-align: center;
- }
- }
-
-/* Very small devices */
-@media (max-width: 480px) {
-#header {
-font-size: clamp(12px, 4.5vw, 16px);
-padding: 0.3rem;
- }
-#github-source {
-font-size: clamp(10px, 3.5vw, 14px);
- }
-#second {
-padding: 0.1rem;
- }
- }
+    #made-with {
+        padding: 0 0 0 2%;
+        background: rgba(255, 2, 2);
+        font-size: clamp(16px, 3vw, 20px);
+        border: 0;
+        line-height: 1;
+    }
+    .quote-line {
+        background: rgb(0, 255, 0);
+        opacity: 80%;
+        margin: 0 0 1% 0;
+        border: 0;
+        line-height: 1;
+    }
+    #quote {
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 0;
+        font-weight: bold;
+        font-size: clamp(14px, 2.5vw, 20px);
+        color: black;
+        line-height: 3;
+        z-index: 1100;
+        transform: translateX(-30%);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        max-width: 70%;
+    }
 </style>

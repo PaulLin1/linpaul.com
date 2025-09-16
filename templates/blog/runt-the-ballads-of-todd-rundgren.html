@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Runt. The Ballads of Todd Rundgren</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="/static/scripts/random-wallpaper.js" defer></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: center;
+        }
+
+        #header-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #nav-placeholder {
+            position: fixed;
+            bottom: 50px;
+            right: 80px;
+            z-index: 1000;
+        }
+        .e {
+            background: black;
+            color: white;
+            padding: 1;
+            margin: 0 0 1% 0;
+            margin-left: 10%;
+            border: 0;
+            line-height: 1;
+            background-clip: content-box;
+            border-bottom: 10px solid transparent;
+            width: 50%;
+            text-align: left;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <p class="e">
+        I’ve recently been listening to Runt. The Ballad of Todd Rundgren and discovering his music after watching an interview where he discussed working with Laura Nyro (I first got into Nyro’s third album through a recommendation from Geordie Greep). Rundgren’s album features exceptional ballads, highlights like Wailing Wall, but also rock numbers like Bleeding. To me, he’s reminiscent of Meat Loaf but with a sweeter voice and a rounder, more polished sound. The stereo work on this album is exceptional. It’s striking to realize that only four years separate the harsh left-right panning of the Beatles’ recordings from this rich, atmospheric British-influenced album.
+    </p>
+    <p class="e">
+        Speaking of the Beatles, I often view their work as marking a new era, almost like the cultural equivalent of the death of Jesus: their inventiveness set a benchmark that makes it hard not to trace their influence, even if sometimes people misattribute certain sounds to them. Rundgren’s career really took off in the wake of the Beatles’ disbandment. The opening track, Long Flowing Robe, is reminiscent of For No One from Revolver. Where McCartney keeps it intimate on the clavichord, Rundgren expands into a grand chorus with layered harmonies.
+    </p>
+    <p class="e">
+        Returning to Laura Nyro, who would later collaborate with Rundgren, it’s not immediately obvious why the two artists are often compared. Nyro’s New York Tendaberry is incredibly dynamic, so much so that it can be tricky to know the right listening volume. Rundgren, by contrast, employs a more classic, compressed sound, where each instrument occupies its own sonic space. Yet his arrangements are expressive; tracks like Chain Letter show his sensitivity to texture and mood. Hope I’m Around is an elegant ballad with sustained, Lennon-like notes.
+    </p>
+    <p class="e">
+        Despite these contrasts, Rundgren’s music does not overtly reflect Nyro’s influence. On her early albums, Nyro’s jazzy vocals ride over her piano like Nina Simone’s vintage recordings. Rundgren’s Runt: The Ballad of Todd Rundgren, however, feels more modern, akin to the album released by the Faces around the same period, A Nod is as Good as a Wink to a Blind Horse.
+    </p>
+    <p class="e">
+        Runt: The Ballad of Todd Rundgren is a must-listen, a seminal ballad album that blends Rundgren’s East Coast sensibilities with arrangements as elegant and intricate as anything George Martin produced.
+    </p>
+
+    <div id="nav-placeholder"></div>
+
+    <script>
+        fetch('/header')
+        .then(res => res.ok ? res.text() : Promise.reject('Failed to load header.html'))
+        .then(html => document.getElementById('header-placeholder').innerHTML = html)
+        .catch(console.error);
+
+        fetch('/nav')
+        .then(res => res.ok ? res.text() : Promise.reject('Failed to load nav.html'))
+        .then(html => document.getElementById('nav-placeholder').innerHTML = html)
+        .catch(console.error);
+    </script>
+</body>
+</html>

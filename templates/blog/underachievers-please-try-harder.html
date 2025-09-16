@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paul Lin - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="/static/scripts/random-wallpaper.js" defer></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: center;
+        }
+
+        #header-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #nav-placeholder {
+            position: fixed;
+            bottom: 50px;
+            right: 80px;
+            z-index: 1000;
+        }
+        .e {
+            background: black;
+            color: white;
+            padding: 1;
+            margin: 0 0 1% 0;
+            margin-left: 10%;
+            border: 0;
+            line-height: 1;
+            background-clip: content-box;
+            border-bottom: 10px solid transparent;
+            width: 50%;
+            text-align: left;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <p class="e">
+        It’s difficult to pin down the perspective from which Tracyanne Campbell, lead songwriter of Camera Obscura, writes. Scott Plagenhoef of Pitchfork calls this album an “adult approach to heartbreak,” yet Tracyanne sings with a childlike innocence. Like their previous album Biggest Bluest Hi-Fi, the band leans heavily into the twee influences of Belle and Sebastian, which they would later replace with a more baroque sound. Instrumentation is often simple: A Sister’s Social Agony consists only of guitar, drums, bass, and the occasional “oo” contributed by the other members. It gets even sparser on Your Picture, one of my personal favorites, which features only fingerpicked acoustic guitar and a soft piano that accompanies it near the end. Yet each song is full of emotion.
+    </p>
+    <p class="e">
+        I feel like the “oo’s” are what define this album. While Biggest Bluest Hi-Fi sometimes sounded thin compared to Tigermilk, whose use of reverb and horns filled the sound, these background vocal melodies fill the space between guitar and jazz-inflected drums. Camera Obscura would later expand on this idea, using extensive string arrangements on Let’s Get Out of This Country, and using backing vocals primarily for effect, like on the bridge of If Looks Could Kill.
+    </p>
+    <p class="e">
+        The album title itself serves as playful commentary on the band’s position in Glasgow’s early-2000s indie scene. Overshadowed by giants like Belle and Sebastian and Teenage Fanclub, it was difficult for them to carve out their own sound. Even contemporaries such as Franz Ferdinand and Snow Patrol drew from indie rock and Britpop to forge new sounds, distinct from the signature style Stuart Murdoch had established at Stow College.
+    </p>
+
+    <div id="nav-placeholder"></div>
+
+    <script>
+        fetch('/header')
+        .then(res => res.ok ? res.text() : Promise.reject('Failed to load header.html'))
+        .then(html => document.getElementById('header-placeholder').innerHTML = html)
+        .catch(console.error);
+
+        fetch('/nav')
+        .then(res => res.ok ? res.text() : Promise.reject('Failed to load nav.html'))
+        .then(html => document.getElementById('nav-placeholder').innerHTML = html)
+        .catch(console.error);
+    </script>
+</body>
+</html>

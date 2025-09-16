@@ -13,12 +13,40 @@
     return Array.from(numbers);
   }
 
-  const randomNums = getRandomUniqueNumbers(18, 173);
-  const images = randomNums.map(n => `/static/imgs/${n}.jpg`);
+  
+  function range(start, end) {
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }
+
+  function insertRandomValues(arr, value, count) {
+    const result = [...arr];
+    for (let i = 0; i < count; i++) {
+      const pos = Math.floor(Math.random() * (result.length + 1)); // random position
+      result.splice(pos, 0, value);
+    }
+    return result;
+  }
+
+  function shuffle(array) {
+    const result = [...array];
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+  }
+
+  const randomNums = insertRandomValues(range(1, 15), 200, 3);
+  const images = shuffle(randomNums).map(n => `/imgs/${n}.jpg`);
+
+  console.log(images);
+
+
+  
 
   function randomSize() {
-    const widths = [150, 200, 250, 300];
-    const heights = [100, 150, 180, 220];
+    const widths = [200, 250, 300, 350];
+    const heights = [150, 180, 220, 270];
     return {
       width: widths[Math.floor(Math.random() * widths.length)],
       height: heights[Math.floor(Math.random() * heights.length)],

@@ -23,6 +23,22 @@ if (array_key_exists($path, $routes)) {
     }
 }
 
+// Blog dynamic routes: /blog/slug
+if (strpos($path, '/blog/') === 0) {
+    $slug = basename($path);
+    $file = __DIR__ . "/templates/blog/$slug.html";
+
+    if (file_exists($file)) {
+        header("Content-Type: text/html; charset=UTF-8");
+        readfile($file);
+        exit;
+    } else {
+        http_response_code(404);
+        echo "404 Blog Page Not Found";
+        exit;
+    }
+}
+
 if (strpos($path, '/static/') === 0) {
     $filePath = realpath(__DIR__ . '/./' . $path);
     if ($filePath && file_exists($filePath) && is_file($filePath)) {
