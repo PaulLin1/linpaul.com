@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    background-image: url('../public/wallpapers/wallpaper.jpg');
+    background-image: url('/wallpapers/wallpaper.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

@@ -3,7 +3,7 @@ import Line from "../components/Line";
 import CenteredLayout from "../components/MainLayout";
 import Section from "../components/Section";
 
-export default function LinksPage() {
+export default function PortfolioPage() {
     const links = [
         { label: "GitHub", url: "https://github.com/PaulLin1" },
         { label: "LinkedIn", url: "https://linkedin.com/in/plin" },
@@ -12,7 +12,7 @@ export default function LinksPage() {
 
     return (
         <CenteredLayout>
-            <Line text="Links" asHeading />
+            <Line text="Portfolio" asHeading />
 
             <Section>
 				{links.map((link, idx) => (

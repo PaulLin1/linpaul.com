@@ -1,7 +1,8 @@
 "use client";
+
 import Link from "next/link";
 import "../styles/globals.css";
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import RandomImages from "./components/RandomImages";
 
 type LayoutProps = { children: ReactNode };
@@ -11,85 +12,84 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <html lang="en">
-      <body style={{ margin: 0, padding: 0 }}>
-        {/* Toggle Switch */}
-        <div style={{ position: "fixed", top: 10, right: 10, zIndex: 1000 }}>
+      <body style={{ margin: 0 }}>
+        {/* Top Bar */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "1rem 2rem",
+            backdropFilter: "blur(4px)",
+          }}
+        >
+          {/* Navbar */}
+          <nav style={{ display: "flex", gap: "1.5rem" }}>
+            {["/", "/portfolio", "/blog", "/links", "/about"].map((href, i) => {
+              const labels = ["Home", "Portfolio", "Blog", "Links", "About"];
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "1.5rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  {labels[i]}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Toggle */}
           <label
             style={{
-              display: "inline-block",
-              width: "50px",
-              height: "28px",
+              width: 50,
+              height: 28,
               position: "relative",
+              display: "inline-block",
             }}
           >
             <input
               type="checkbox"
               checked={showImages}
-              onChange={() => setShowImages(!showImages)}
+              onChange={() => setShowImages((v) => !v)}
               style={{ opacity: 0, width: 0, height: 0 }}
             />
             <span
               style={{
                 position: "absolute",
+                inset: 0,
                 cursor: "pointer",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: showImages ? "#000000ff" : "#ccc",
-                transition: "0.5s",
+                background: showImages ? "#000" : "#ccc",
+                transition: "0.3s",
+                borderRadius: 999,
               }}
             >
               <span
                 style={{
                   position: "absolute",
-                  height: "22px",
-                  width: "22px",
-                  left: showImages ? "26px" : "4px",
-                  bottom: "3px",
-                  backgroundColor: "white",
+                  bottom: 3,
+                  left: showImages ? 26 : 4,
+                  width: 22,
+                  height: 22,
                   borderRadius: "50%",
-                  transition: "0.5s",
+                  background: "#fff",
+                  transition: "0.3s",
                 }}
               />
             </span>
           </label>
         </div>
 
-        {/* Background Images */}
+        {/* Background */}
         {showImages && <RandomImages />}
 
-        {/* Toolbar */}
-        <header
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            padding: "1rem 2rem",
-            color: "#111",
-          }}
-        >
-          {/* Left links */}
-          <nav style={{ display: "flex", gap: "1.5rem" }}>
-            <Link href="/" style={{ textDecoration: "none", color: "#111", fontSize: "1.5rem" }}>
-              Home
-            </Link>
-            {/* <Link href="/blog" style={{ textDecoration: "none", color: "#111", fontSize: "1.5rem" }}>
-              Blog
-            </Link> */}
-            <Link href="/links" style={{ textDecoration: "none", color: "#111", fontSize: "1.5rem" }}>
-              Links
-            </Link>
-            <Link href="/about" style={{ textDecoration: "none", color: "#111", fontSize: "1.5rem" }}>
-              About
-            </Link>
-          </nav>
-          {/* Right placeholder */}
-          <div style={{ width: "120px" }}></div>
-        </header>
-
-        {/* Page content */}
-        <main>{children}</main>
+        {/* Content */}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );
