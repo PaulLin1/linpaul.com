@@ -1,14 +1,17 @@
 import fs from "fs";
 import path from "path";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  req: Request,
-  { params }: { params: { slug: string[] } }
+  req: NextRequest,
+  context: { params: Promise<{ slug: string[] }> }
 ) {
+  const { slug } = await context.params;
+
   const filePath = path.join(
     process.cwd(),
     "content/portfolio",
-    ...params.slug
+    ...slug
   );
 
   if (!fs.existsSync(filePath)) {
