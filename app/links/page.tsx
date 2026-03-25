@@ -4,25 +4,22 @@ import CenteredLayout from "../components/MainLayout";
 import Section from "../components/Section";
 
 export default function LinksPage() {
-    const links = [
-        { label: "GitHub", url: "https://github.com/PaulLin1" },
-        { label: "LinkedIn", url: "https://linkedin.com/in/plin" },
-        { label: "Email", url: "mailto:linp40182@gmail.com" },
-    ];
-
     return (
         <CenteredLayout>
-            <Line text="Links" asHeading />
+            <Line as="h1">Links</Line>
 
             <Section>
-				{links.map((link, idx) => (
-					<Line
-						key={idx}
-						text={link.label}
-						asLink
-						href={link.url}
-					/>
-				))}
+                <Line as="a" href="https://github.com/PaulLin1">
+                    GitHub
+                </Line>
+
+                <Line as="a" href="https://linkedin.com/in/plin">
+                    LinkedIn
+                </Line>
+
+                <Line as="a" href="mailto:linp40182@gmail.com">
+                    Email
+                </Line>
             </Section>
         </CenteredLayout>
     );

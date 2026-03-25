@@ -2,9 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
-import { serialize } from "next-mdx-remote/serialize";
-import MDXRenderer from "../../components/MDXRenderer";
 import React from "react";
+import ReactMarkdown from "react-markdown";
+
 import Line from "../../components/Line";
 import CenteredLayout from "../../components/MainLayout";
 import Section from "../../components/Section";
@@ -13,36 +13,54 @@ interface Props {
     params: { slug: string };
 }
 
-export default async function PostPage({ params }: Props) {
-	const filePath = path.join(
+export default function PostPage({ params }: Props) {
+    const filePath = path.join(
         process.cwd(),
-        "content/posts",
+        "content/blog",
         `${params.slug}.md`,
     );
+
     if (!fs.existsSync(filePath)) notFound();
 
     const fileContents = fs.readFileSync(filePath, "utf8");
     const { content, data } = matter(fileContents);
-    const mdxSource = await serialize(content);
 
     return (
         <CenteredLayout>
-			<Line text={data.title} asHeading />
-
-			<Line text={data.date} />
+            <Line as="h1">{data.title}</Line>
+            <Line>{data.date}</Line>
 
             <Section>
-				<div
-                    style={{
-                        height: "60vh",
-                        overflowY: "auto",
-                        scrollbarWidth: "none", // Firefox
-                        msOverflowStyle: "none", // IE and Edge
-                    }}
-                >
-					<MDXRenderer source={mdxSource} />
-				</div>
+                <div className="markdown">
+                    <ReactMarkdown>
+                        {content.trim()}
+                    </ReactMarkdown>
+                </div>
             </Section>
+
+<style>{`
+.markdown {
+    max-height: 60vh;
+    overflow-y: auto;
+
+    /* hide scrollbar (Firefox) */
+    scrollbar-width: none;
+
+    /* hide scrollbar (IE/Edge legacy) */
+    -ms-overflow-style: none;
+}
+
+.markdown::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.markdown > * {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    background: white;
+    margin-bottom: 0.5rem;
+}
+`}</style>
         </CenteredLayout>
     );
 }

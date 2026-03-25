@@ -1,45 +1,37 @@
 import React from "react";
 
-export type LineProps = {
-    text: string;
-    asHeading?: boolean;
-    asLink?: boolean;
+export type LineProps<T extends React.ElementType> = {
+    as?: T;
+    children: React.ReactNode;
     href?: string;
-};
+} & React.ComponentPropsWithoutRef<T>;
 
-const Line: React.FC<LineProps> = ({
-    text,
-    asHeading = false,
-    asLink = false,
+const Line = <T extends React.ElementType = "span">({
+    as,
+    children,
     href,
-}) => {
-    const style = {
-        padding: asHeading ? "0.5rem 1rem" : "0.25rem 0.5rem",
-        fontSize: asHeading ? "3rem" : undefined,
-        fontWeight: asHeading ? 900 : undefined,
+    ...props
+}: LineProps<T>) => {
+    const Component = as || "span";
+
+    const style: React.CSSProperties = {
+        padding: "0.25rem 0.5rem",
         margin: 0,
         backgroundColor: "white",
-        cursor: asLink ? "pointer" : "default",
-        textDecoration: "none",
-        color: "inherit",
         display: "inline-block",
+        color: "inherit",
+        textDecoration: "none",
     };
 
-    if (asLink && href) {
-        return (
-            <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={style}
-            >
-                {text}
-            </a>
-        );
-    }
-
-    const Element = asHeading ? "h1" : "span";
-    return <Element style={style}>{text}</Element>;
+    return (
+        <Component
+            href={Component === "a" ? href : undefined}
+            style={style}
+            {...props}
+        >
+            {children}
+        </Component>
+    );
 };
 
 export default Line;

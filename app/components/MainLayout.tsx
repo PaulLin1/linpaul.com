@@ -2,15 +2,15 @@ import React from "react";
 
 const containerStyle: React.CSSProperties = {
     position: "fixed",
-    top: "50%",
+    top: "8rem",
     left: "50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translateX(-50%)",
     maxWidth: "90vw",
     padding: "2rem",
     display: "flex",
     flexDirection: "column",
     gap: "2rem",
-    width: "100%"
+    width: "100%",
 };
 
 export default function CenteredLayout({

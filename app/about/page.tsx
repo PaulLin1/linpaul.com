@@ -1,40 +1,54 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { notFound } from "next/navigation";
 import React from "react";
+import ReactMarkdown from "react-markdown";
+
 import Line from "../components/Line";
 import CenteredLayout from "../components/MainLayout";
 import Section from "../components/Section";
 
-export default function AboutPage() {
-  const introLines = [
-    "Software developer with a Bachelors in Computer Science from Michigan State University",
-    "Currently working on evolutionary computation and computer vision projects at the ECODE Lab.",
-    "In my free time, I like listening to music; my favorite artists are Belle & Sebastian and Jon Brion.",
-  ];
+interface Props {
+    params: { slug: string };
+}
 
-  const otherLines = [
-    "The website's design draws inspiration from art.yale.edu.",
-    "In a UX class, a classmate once presented it as an example of poor design, but I loved it.",
-    "I like how its eccentric, collage-like layout stands out over the repeated image.",
-    "The chair's unusual patterns allow colors to inhabit unexpected shapes, giving the piece a lively, DIY feel.",
-    "The bold, puke-like yellows were chosen with the same deliberate care as the subtle eggshell whites found on a sharp tech site.",
-    "Since this website doubles as a portfolio for recruiters, I had to tame some elements, like choosing sleeker colors and fonts.",
-    "It taught me that sometimes the effort behind an idea matters more than the idea itself.",
-  ];
+export default function PostPage({ params }: Props) {
+    const filePath = path.join(process.cwd(), "content/", `${params.slug}.md`);
 
-  return (
-    <CenteredLayout>
-      <Line text="About" asHeading />
+    if (!fs.existsSync("content/about.md")) notFound();
 
-      <Section>
-        {introLines.map((line, i) => (
-          <Line key={i} text={line} />
-        ))}
-      </Section>
+    const fileContents = fs.readFileSync("content/about.md", "utf8");
+    const { content, data } = matter(fileContents);
 
-      <Section>
-        {otherLines.map((line, i) => (
-          <Line key={i} text={line} />
-        ))}
-      </Section>
-    </CenteredLayout>
-  );
+    return (
+        <CenteredLayout>
+            <Line as="h1">About</Line>
+
+            <Section>
+                <div className="markdown">
+                    <ReactMarkdown>{content.trim()}</ReactMarkdown>
+                </div>
+            </Section>
+		            <style>{`
+.markdown {
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.markdown::-webkit-scrollbar {
+    display: none;
+}
+
+.markdown > * {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    background: white;
+    margin-bottom: 0.5rem;
+}
+`}</style>	
+        </CenteredLayout>
+    );
 }

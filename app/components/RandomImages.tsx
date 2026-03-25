@@ -102,7 +102,7 @@ export default function CollageBackground() {
                 const pos = randomPosition(size.width, size.height);
 
                 const newImage: CollageImage = {
-                    src: `/imgs/${newN}.jpg`,
+                    src: `/backgroundImages/${newN}.jpg`,
                     width: size.width,
                     height: size.height,
                     key: `${newN}-${now}`,
