@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const IMAGE_COUNT = 153;
+const IMAGE_COUNT = 117;
 const SLOTS = 15;
 const IMAGE_LIFESPAN = 4000;
 const ADD_INTERVAL = 500;
