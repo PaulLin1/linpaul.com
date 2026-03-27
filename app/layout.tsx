@@ -24,8 +24,8 @@ export default function Layout({ children }: LayoutProps) {
         >
           {/* Navbar */}
           <nav style={{ display: "flex", gap: "1.5rem" }}>
-            {["/", "/portfolio", "/blog", "/links", "/about"].map((href, i) => {
-              const labels = ["Home", "Portfolio", "Blog", "Links", "About"];
+            {["/", "/portfolio", "/links", "/about"].map((href, i) => {
+              const labels = ["Home", "Portfolio", "Links", "About"];
               return (
                 <Link
                   key={href}
