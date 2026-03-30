@@ -22,20 +22,32 @@ export default function PostPage({ params }: Props) {
 
     if (!fs.existsSync(folderPath)) notFound();
 
-    // ✅ ONLY .md
     const writeupPath = path.join(folderPath, "writeup.md");
     if (!fs.existsSync(writeupPath)) notFound();
 
     const fileContents = fs.readFileSync(writeupPath, "utf8");
     const { content, data } = matter(fileContents);
 
-    // ✅ serve image via API route (since not in /public)
     const imagePath = `/api/image/${params.slug}/image.jpg`;
 
     return (
         <CenteredLayout>
             <Line as="h1">{data.title}</Line>
-            <Line>{data.date}</Line>
+            <Line>
+            {data.date}
+            {data.github && (
+                <>
+                {" | "}
+                <a
+                    href={data.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub
+                </a>
+                </>
+            )}
+            </Line>
 
             <div
                 style={{

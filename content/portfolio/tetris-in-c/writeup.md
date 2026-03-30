@@ -1,6 +1,7 @@
 ---
 title: "Tetris in C"
 date: "2024"
+github: "https://github.com/PaulLin1/tetris"
 tags: ["Personal Project"]
 ---
 
