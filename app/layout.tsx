@@ -39,86 +39,25 @@ export default function Layout({ children }: LayoutProps) {
 					display: "flex",
 					justifyContent: "space-between",
 					alignItems: "center",
-					gap: "1.5rem",
 					flexWrap: "wrap",
+					gap: "1rem", // slightly smaller gap for mobile
 					}}
 				>
-					{/* Desktop links */}
-					<div
-					className="desktop-nav"
-					style={{ display: "flex", gap: "1.5rem" }}
-					>
 					{navLinks.map(({ href, label }) => (
-						<Link
+					<Link
 						key={href}
 						href={href}
-						style={{ textDecoration: "none", fontSize: "1.5rem", fontWeight: 500 }}
-						>
-						{label}
-						</Link>
-					))}
-					</div>
-
-					{/* Hamburger */}
-					<button
-					className="hamburger"
-					onClick={() => setMenuOpen((prev) => !prev)}
-					aria-label="Toggle menu"
-					style={{
-						display: "none",
-						background: "none",
-						border: "none",
-						cursor: "pointer",
-						fontSize: "1.75rem",
-						lineHeight: 1,
-					}}
-					>
-					{menuOpen ? "✕" : "☰"}
-					</button>
-				</div>
-
-				{/* Mobile menu */}
-				{menuOpen && (
-					<div
-					className="mobile-menu"
-					style={{
-						position: "absolute",
-						top: "100%",
-						right: 0,
-						left: "auto",
-						background: "#fff",
-						padding: "0.75rem 0",
-						display: "flex",
-						flexDirection: "column",
-						minWidth: "160px",
-						maxWidth: "100vw",
-						zIndex: 100,
-					}}
-					>
-					{navLinks.map(({ href, label }) => (
-						<Link
-						key={href}
-						href={href}
-						onClick={() => setMenuOpen(false)}
 						style={{
-							textDecoration: "none",
-							fontSize: "1.1rem",
-							fontWeight: 500,
-							padding: "0.6rem 1.25rem",
+						textDecoration: "none",
+						fontSize: "1.2rem",
+						fontWeight: 500,
+						padding: "0.25rem 0.5rem",
 						}}
-						>
+					>
 						{label}
-						</Link>
+					</Link>
 					))}
-					</div>
-				)}
-
-				<style>{`
-					@media (max-width: 640px) {
-					.desktop-nav { display: none !important; }
-					.hamburger { display: block !important; }
-					}
-				`}</style>
+				</div>
 				</nav>
 
                     {/* Toggle */}
