@@ -7,8 +7,18 @@ import RandomImages from "./components/RandomImages";
 
 type LayoutProps = { children: ReactNode };
 
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/blog", label: "Blog" },
+  { href: "/links", label: "Links" },
+  { href: "/about", label: "About" },
+];
+
+
 export default function Layout({ children }: LayoutProps) {
     const [showImages, setShowImages] = useState(true);
+	const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <html lang="en">
@@ -22,33 +32,86 @@ export default function Layout({ children }: LayoutProps) {
                         backdropFilter: "blur(4px)",
                     }}
                 >
-                    {/* Navbar */}
-                    <nav style={{ display: "flex", gap: "1.5rem" }}>
-                        {["/", "/portfolio", "/blog", "/links", "/about"].map(
-                            (href, i) => {
-                                const labels = [
-                                    "Home",
-                                    "Portfolio",
-                                    "Blog",
-                                    "Links",
-                                    "About",
-                                ];
-                                return (
-                                    <Link
-                                        key={href}
-                                        href={href}
-                                        style={{
-                                            textDecoration: "none",
-                                            fontSize: "1.5rem",
-                                            fontWeight: 500,
-                                        }}
-                                    >
-                                        {labels[i]}
-                                    </Link>
-                                );
-                            },
-                        )}
-                    </nav>
+				{/* Navbar */}
+				<nav style={{ position: "relative" }}>
+					<div
+						style={{
+						display: "flex",
+						gap: "1.5rem",
+						flexWrap: "wrap",
+						}}
+						className="desktop-nav"
+					>
+						{navLinks.map(({ href, label }) => (
+						<Link
+							key={href}
+							href={href}
+							style={{ textDecoration: "none", fontSize: "1.5rem", fontWeight: 500 }}
+						>
+							{label}
+						</Link>
+						))}
+					</div>
+
+					{}
+					<button
+						className="hamburger"
+						onClick={() => setMenuOpen((prev) => !prev)}
+						aria-label="Toggle menu"
+						style={{
+						display: "none",
+						background: "none",
+						border: "none",
+						cursor: "pointer",
+						fontSize: "1.75rem",
+						lineHeight: 1,
+						}}
+					>
+						{menuOpen ? "✕" : "☰"}
+					</button>
+
+					{menuOpen && (
+						<div
+						className="mobile-menu"
+						style={{
+							position: "absolute",
+							top: "100%",
+							right: 0,
+							background: "#fff",
+							boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+							borderRadius: "8px",
+							padding: "0.75rem 0",
+							display: "flex",
+							flexDirection: "column",
+							minWidth: "160px",
+							zIndex: 100,
+						}}
+						>
+						{navLinks.map(({ href, label }) => (
+							<Link
+							key={href}
+							href={href}
+							onClick={() => setMenuOpen(false)}
+							style={{
+								textDecoration: "none",
+								fontSize: "1.1rem",
+								fontWeight: 500,
+								padding: "0.6rem 1.25rem",
+							}}
+							>
+							{label}
+							</Link>
+						))}
+						</div>
+					)}
+
+					<style>{`
+						@media (max-width: 640px) {
+						.desktop-nav { display: none !important; }
+						.hamburger { display: block !important; }
+						}
+					`}</style>
+				</nav>
 
                     {/* Toggle */}
                     {/* <label
