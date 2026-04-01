@@ -34,83 +34,91 @@ export default function Layout({ children }: LayoutProps) {
                 >
 				{/* Navbar */}
 				<nav style={{ position: "relative" }}>
+				<div
+					style={{
+					display: "flex",
+					justifyContent: "space-between",
+					alignItems: "center",
+					gap: "1.5rem",
+					flexWrap: "wrap",
+					}}
+				>
+					{/* Desktop links */}
 					<div
-						style={{
-						display: "flex",
-						gap: "1.5rem",
-						flexWrap: "wrap",
-						}}
-						className="desktop-nav"
+					className="desktop-nav"
+					style={{ display: "flex", gap: "1.5rem" }}
 					>
-						{navLinks.map(({ href, label }) => (
+					{navLinks.map(({ href, label }) => (
 						<Link
-							key={href}
-							href={href}
-							style={{ textDecoration: "none", fontSize: "1.5rem", fontWeight: 500 }}
+						key={href}
+						href={href}
+						style={{ textDecoration: "none", fontSize: "1.5rem", fontWeight: 500 }}
 						>
-							{label}
+						{label}
 						</Link>
-						))}
+					))}
 					</div>
 
-					{}
+					{/* Hamburger */}
 					<button
-						className="hamburger"
-						onClick={() => setMenuOpen((prev) => !prev)}
-						aria-label="Toggle menu"
-						style={{
+					className="hamburger"
+					onClick={() => setMenuOpen((prev) => !prev)}
+					aria-label="Toggle menu"
+					style={{
 						display: "none",
 						background: "none",
 						border: "none",
 						cursor: "pointer",
 						fontSize: "1.75rem",
 						lineHeight: 1,
-						}}
+					}}
 					>
-						{menuOpen ? "✕" : "☰"}
+					{menuOpen ? "✕" : "☰"}
 					</button>
+				</div>
 
-					{menuOpen && (
-						<div
-						className="mobile-menu"
+				{/* Mobile menu */}
+				{menuOpen && (
+					<div
+					className="mobile-menu"
+					style={{
+						position: "absolute",
+						top: "100%",
+						right: 0,
+						background: "#fff",
+						boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+						borderRadius: "8px",
+						padding: "0.75rem 0",
+						display: "flex",
+						flexDirection: "column",
+						minWidth: "160px",
+						zIndex: 100,
+					}}
+					>
+					{navLinks.map(({ href, label }) => (
+						<Link
+						key={href}
+						href={href}
+						onClick={() => setMenuOpen(false)}
 						style={{
-							position: "absolute",
-							top: "100%",
-							right: 0,
-							background: "#fff",
-							boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-							borderRadius: "8px",
-							padding: "0.75rem 0",
-							display: "flex",
-							flexDirection: "column",
-							minWidth: "160px",
-							zIndex: 100,
+							textDecoration: "none",
+							fontSize: "1.1rem",
+							fontWeight: 500,
+							padding: "0.6rem 1.25rem",
 						}}
 						>
-						{navLinks.map(({ href, label }) => (
-							<Link
-							key={href}
-							href={href}
-							onClick={() => setMenuOpen(false)}
-							style={{
-								textDecoration: "none",
-								fontSize: "1.1rem",
-								fontWeight: 500,
-								padding: "0.6rem 1.25rem",
-							}}
-							>
-							{label}
-							</Link>
-						))}
-						</div>
-					)}
+						{label}
+						</Link>
+					))}
+					</div>
+				)}
 
-					<style>{`
-						@media (max-width: 640px) {
-						.desktop-nav { display: none !important; }
-						.hamburger { display: block !important; }
-						}
-					`}</style>
+				<style>{`
+					@media (max-width: 640px) {
+					.desktop-nav { display: none !important; }
+					.hamburger { display: block !important; }
+					}
+				`}</style>
 				</nav>
 
                     {/* Toggle */}
