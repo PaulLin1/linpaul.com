@@ -10,14 +10,15 @@ import CenteredLayout from "../../components/MainLayout";
 import Section from "../../components/Section";
 
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
-export default function PostPage({ params }: Props) {
+export default async function PostPage({ params }: Props) {
+    const { slug } = await params;
     const filePath = path.join(
         process.cwd(),
         "content/blog",
-        `${params.slug}.md`,
+        `${slug}.md`,
     );
 
     if (!fs.existsSync(filePath)) notFound();

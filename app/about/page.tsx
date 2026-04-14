@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -9,12 +8,7 @@ import Line from "../components/Line";
 import CenteredLayout from "../components/MainLayout";
 import Section from "../components/Section";
 
-interface Props {
-    params: { slug: string };
-}
-
-export default function PostPage({ params }: Props) {
-    const filePath = path.join(process.cwd(), "content/", `${params.slug}.md`);
+export default function PostPage() {
 
     if (!fs.existsSync("content/about.md")) notFound();
 

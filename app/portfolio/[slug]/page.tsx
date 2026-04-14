@@ -10,14 +10,15 @@ import CenteredLayout from "../../components/MainLayout";
 import Section from "../../components/Section";
 
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
-export default function PostPage({ params }: Props) {
+export default async function PostPage({ params }: Props) {
+    const { slug } = await params;
     const folderPath = path.join(
         process.cwd(),
         "content/portfolio",
-        params.slug
+        slug
     );
 
     if (!fs.existsSync(folderPath)) notFound();
@@ -34,7 +35,7 @@ export default function PostPage({ params }: Props) {
         .filter((f) => imageExtensions.includes(path.extname(f).toLowerCase()))
         .sort();
     const imagePaths = imageFiles.map(
-        (f) => `/api/image/${params.slug}/${f}`
+        (f) => `/api/image/${slug}/${f}`
     );
 
     return (
