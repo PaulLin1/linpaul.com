@@ -64,7 +64,12 @@ export default function BlogPage() {
 
             <Section>
                 {posts.map((post) => (
-                    <Line key={post.slug} as="a" href={`/portfolio/${post.slug}`}>
+                    <Line
+                        key={post.slug}
+                        as="a"
+                        href={`/portfolio/${post.slug}`}
+                        style={post.tags.includes("Design") ? { backgroundColor: "yellow" } : undefined}
+                    >
                         <div
                             style={{
                                 display: "flex",

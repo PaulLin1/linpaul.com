@@ -28,7 +28,14 @@ export default function PostPage({ params }: Props) {
     const fileContents = fs.readFileSync(writeupPath, "utf8");
     const { content, data } = matter(fileContents);
 
-    const imagePath = `/api/image/${params.slug}/image.jpg`;
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    const imageFiles = fs
+        .readdirSync(folderPath)
+        .filter((f) => imageExtensions.includes(path.extname(f).toLowerCase()))
+        .sort();
+    const imagePaths = imageFiles.map(
+        (f) => `/api/image/${params.slug}/${f}`
+    );
 
     return (
         <CenteredLayout>
@@ -63,24 +70,40 @@ export default function PostPage({ params }: Props) {
                     </div>
                 </Section>
 
-                {/* RIGHT: image */}
-                <div
-                    style={{
-                        flex: "0 0 33.33%",
-                        height: "60vh",
-                        overflow: "hidden",
-                    }}
-                >
-                    <img
-                        src={imagePath}
-                        alt={data.title}
+                {/* RIGHT: images stacked vertically */}
+                {imagePaths.length > 0 && (
+                    <div
                         style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
+                            flex: "0 0 33.33%",
+                            height: "60vh",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "0.25rem",
+                            overflow: "hidden",
                         }}
-                    />
-                </div>
+                    >
+                        {imagePaths.map((src, i) => (
+                            <div
+                                key={i}
+                                style={{
+                                    flex: 1,
+                                    overflow: "hidden",
+                                    minHeight: 0,
+                                }}
+                            >
+                                <img
+                                    src={src}
+                                    alt={`${data.title} ${i + 1}`}
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                    }}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <style>{`

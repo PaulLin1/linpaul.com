@@ -10,8 +10,9 @@ const Line = <T extends React.ElementType = "span">({
     as,
     children,
     href,
+    style: styleProp,
     ...props
-}: LineProps<T>) => {
+}: LineProps<T> & { style?: React.CSSProperties }) => {
     const Component = as || "span";
 
     const style: React.CSSProperties = {
@@ -21,6 +22,7 @@ const Line = <T extends React.ElementType = "span">({
         display: "inline-block",
         color: "inherit",
         textDecoration: "none",
+        ...styleProp,
     };
 
     return (

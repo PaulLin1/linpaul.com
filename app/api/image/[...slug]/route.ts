@@ -20,9 +20,19 @@ export async function GET(
 
   const file = fs.readFileSync(filePath);
 
+  const ext = path.extname(filePath).toLowerCase();
+  const contentTypeMap: Record<string, string> = {
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".gif": "image/gif",
+    ".webp": "image/webp",
+  };
+  const contentType = contentTypeMap[ext] ?? "application/octet-stream";
+
   return new Response(file, {
     headers: {
-      "Content-Type": "image/jpeg",
+      "Content-Type": contentType,
     },
   });
 }
