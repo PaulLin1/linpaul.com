@@ -32,10 +32,12 @@ export default function MusicPage() {
             <div
                 style={{
                     position: "fixed",
-                    top: "5rem",
+                    top: "8rem",
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "min(700px, 90vw)",
+                    width: "100%",
+                    maxWidth: "90vw",
+                    padding: "2rem",
                     bottom: "2rem",
                     display: "flex",
                     flexDirection: "column",
