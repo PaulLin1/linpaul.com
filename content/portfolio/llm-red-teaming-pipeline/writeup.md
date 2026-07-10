@@ -1,7 +1,7 @@
 ---
 title: "LLM Red Teaming Pipeline"
 date: "2026"
-tags: ["Personal Project"]
+tags: ["Full Stack", "AI"]
 ---
 
 # LLM Red Teaming Pipeline

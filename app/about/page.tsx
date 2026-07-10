@@ -1,48 +1,48 @@
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import React from "react";
-import ReactMarkdown from "react-markdown";
 
 import Line from "../components/Line";
 import CenteredLayout from "../components/MainLayout";
+import Markdown from "../components/Markdown";
 import Section from "../components/Section";
 
-export default function PostPage() {
+export default function AboutPage() {
+    const filePath = path.join(process.cwd(), "content/about.md");
+    if (!fs.existsSync(filePath)) notFound();
 
-    if (!fs.existsSync("content/about.md")) notFound();
-
-    const fileContents = fs.readFileSync("content/about.md", "utf8");
-    const { content, data } = matter(fileContents);
+    const { content } = matter(fs.readFileSync(filePath, "utf8"));
 
     return (
         <CenteredLayout>
             <Line as="h1">About</Line>
 
             <Section>
-                <div className="markdown">
-                    <ReactMarkdown>{content.trim()}</ReactMarkdown>
-                </div>
+                <Markdown>{content}</Markdown>
             </Section>
-		            <style>{`
-.markdown {
-    max-height: 60vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
 
-.markdown::-webkit-scrollbar {
-    display: none;
-}
-
-.markdown > * {
-    display: block;
-    padding: 0.25rem 0.5rem;
-    background: white;
-    margin-bottom: 0.5rem;
-}
-`}</style>	
+            <div
+                style={{
+                    width: "100%",
+                    maxWidth: "600px",
+                    margin: "2rem auto 0",
+                }}
+            >
+                <Image
+                    src="/about.jpg"
+                    alt="Paul Lin"
+                    width={500}
+                    height={500}
+                    style={{
+                        width: "100%",
+                        height: "auto",
+                        display: "block",
+                    }}
+                    priority
+                />
+            </div>
         </CenteredLayout>
     );
 }

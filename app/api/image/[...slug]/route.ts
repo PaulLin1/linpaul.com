@@ -1,38 +1,45 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import { NextRequest } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  context: { params: Promise<{ slug: string[] }> }
-) {
-  const { slug } = await context.params;
+import { CONTENT_ROOT } from "@/lib/content";
 
-  const filePath = path.join(
-    process.cwd(),
-    "content/portfolio",
-    ...slug
-  );
-
-  if (!fs.existsSync(filePath)) {
-    return new Response("Not found", { status: 404 });
-  }
-
-  const file = fs.readFileSync(filePath);
-
-  const ext = path.extname(filePath).toLowerCase();
-  const contentTypeMap: Record<string, string> = {
+const CONTENT_TYPES: Record<string, string> = {
     ".jpg": "image/jpeg",
     ".jpeg": "image/jpeg",
     ".png": "image/png",
     ".gif": "image/gif",
     ".webp": "image/webp",
-  };
-  const contentType = contentTypeMap[ext] ?? "application/octet-stream";
+    ".avif": "image/avif",
+    ".svg": "image/svg+xml",
+};
 
-  return new Response(file, {
-    headers: {
-      "Content-Type": contentType,
-    },
-  });
+/** Serves images from anywhere under content/, e.g. /api/image/blog/collar/1.jpg */
+export async function GET(
+    _req: NextRequest,
+    context: { params: Promise<{ slug: string[] }> },
+) {
+    const { slug } = await context.params;
+    const filePath = path.join(CONTENT_ROOT, ...slug);
+
+    if (!filePath.startsWith(CONTENT_ROOT + path.sep)) {
+        return new Response("Forbidden", { status: 403 });
+    }
+
+    const contentType = CONTENT_TYPES[path.extname(filePath).toLowerCase()];
+    if (!contentType) {
+        return new Response("Not found", { status: 404 });
+    }
+
+    try {
+        const file = await fs.readFile(filePath);
+        return new Response(new Uint8Array(file), {
+            headers: {
+                "Content-Type": contentType,
+                "Cache-Control": "public, max-age=31536000, immutable",
+            },
+        });
+    } catch {
+        return new Response("Not found", { status: 404 });
+    }
 }

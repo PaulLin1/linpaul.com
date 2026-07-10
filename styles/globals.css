@@ -5,12 +5,37 @@ html, body {
 }
 
 body {
-    background-image: url('/wallpapers/wallpaper.jpg');
+    background-image: url('/wallpapers/wallpaper.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 * {
-    font-family: "Arial Black";
+    font-family: "Helvetica Neue";
+    font-weight: 300;
+}
+
+.no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.markdown {
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.markdown::-webkit-scrollbar {
+    display: none;
+}
+.markdown > * {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    background: white;
+    margin-bottom: 0.5rem;
 }

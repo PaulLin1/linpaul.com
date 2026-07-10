@@ -2,7 +2,7 @@
 title: "Sketch to Facade"
 date: "2025"
 github: "https://github.com/PaulLin1/sketch-to-facade"
-tags: ["Personal Project"]
+tags: ["Full Stack", "AI"]
 ---
 
 This project takes drawings and generates realistic building facades.

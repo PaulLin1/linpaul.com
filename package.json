@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -12,12 +12,10 @@
     "framer-motion": "^12.23.15",
     "gray-matter": "^4.0.3",
     "next": "^15.5.14",
-    "next-mdx-remote": "^6.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
-    "unist-util-visit": "^5.1.0"
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

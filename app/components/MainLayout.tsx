@@ -18,9 +18,5 @@ export default function CenteredLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return (
-        <main>
-            <div style={containerStyle}>{children}</div>
-        </main>
-    );
+    return <div style={containerStyle}>{children}</div>;
 }

@@ -37,7 +37,7 @@ def process_images(directory, max_size=1920):
         while counter in existing_nums:
             counter += 1
 
-        dst_path = os.path.join(output_dir, f"{counter}.jpg")
+        dst_path = os.path.join(output_dir, f"{counter}.webp")
 
         try:
             with Image.open(src_path) as img:
@@ -45,7 +45,7 @@ def process_images(directory, max_size=1920):
 
                 img.thumbnail((max_size, max_size))
 
-                img.save(dst_path, "JPEG", quality=90, optimize=True)
+                img.save(dst_path, "WEBP", quality=90, optimize=True)
 
             processed_count += 1
             existing_nums.add(counter)

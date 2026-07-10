@@ -2,7 +2,7 @@
 title: "Bioinformatics in CUDA"
 date: "2025"
 github: "https://github.com/PaulLin1/bioinformatics-implementations"
-tags: ["Personal Project"]
+tags: ["C++"]
 ---
 
 # Bioinformatics Implementations

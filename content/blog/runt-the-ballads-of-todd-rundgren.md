@@ -1,12 +1,12 @@
 ---
 title: "Runt. The Ballads of Todd Rundgren"
 date: "09-15-2025"
-tags: ["Todd Rundgren"]
+tags: ["Music"]
 ---
 
-I’ve recently been listening to Runt: The Ballad of Todd Rundgren and discovering his music after watching an interview where he discussed working with Laura Nyro (I first got into Nyro’s third album through a recommendation from Geordie Greep). Rundgren’s album features exceptional ballads—highlights like “Wailing Wall”, but also rock numbers like “Bleeding.” To me, he’s reminiscent of Meat Loaf but with a sweeter voice and a rounder, more polished sound. The stereo work on this album is exceptional. It’s striking to realize that only four years separate the harsh left-right panning of
+Recently, I've been listening to Runt: The Ballad of Todd Rundgren after discovering his music through an interview where he discussed his work with Laura Nyro (I first became acquainted with Nyro’s work through an interview with Geordie Greep). The album features exceptional ballads highlights like “Wailing Wall”, but also rock numbers like “Bleeding.” For me, Rundgren is reminiscent of Meat Loaf but with a sweeter voice and a rounder, more polished sound. The stereo work on this album is exceptional. It’s hard to grasp that only four years separate it with the harsh left-right panning of Revolver.
 
-Speaking of The Beatles, I often view their work as marking a new era, almost like the cultural equivalent of the life of Jesus: their inventiveness set a benchmark that makes it hard not to trace their influence, even if sometimes people misattribute certain sounds to them. Rundgren’s career really took off in the wake of the Beatles’ disbandment. The opening track, “Long Flowing Robe,” is reminiscent of “For No One” from Revolver. Where Paul McCartney keeps it intimate on the clavichord, Rundgren expands into a grand chorus with layered harmonies.
+Speaking of The Beatles, I often view their career as start of a new era, almost like the cultural equivalent of the life of Jesus: their inventiveness set a benchmark that makes it hard not to trace their influence, even if sometimes people misattribute certain sounds to them. Rundgren’s career really took off in the wake of the Beatles’ disbandment. The opening track, “Long Flowing Robe,” is reminiscent of “For No One” from Revolver. Where Paul McCartney keeps it intimate on the clavichord, Rundgren expands into a grand chorus with layered harmonies.
 
 Returning to Laura Nyro, who would later collaborate with Rundgren, it’s not immediately obvious why the two artists are often compared. Nyro’s New York Tendaberry is incredibly dynamic, so much so that it can be tricky to know the right listening volume. Rundgren, by contrast, employs a more classic, compressed sound, where each instrument occupies its own sonic space. Yet his arrangements are expressive; tracks like “Chain Letter” show his sensitivity to texture and mood. “Hope I’m Around” is an elegant ballad with sustained, Lennon-like notes.
 
