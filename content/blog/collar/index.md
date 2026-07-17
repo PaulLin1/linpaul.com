@@ -1,5 +1,5 @@
 ---
-title: "Collar"
+title: "Collar Case Study"
 date: "07-09-2026"
 tags: ["Fashion"]
 layout: "case-study"
@@ -7,9 +7,21 @@ aspect: "3/4"
 
 images:
   - src: "1.jpg"
-    caption: "Early sketches."
+    caption: "Levi's Flannel, L.L.Bean Sweater"
   - src: "2.jpg"
-    caption: "First prototype in webbing and brass."
+    caption: "Uniqlo Oxford Shirt, Patagonia Fleece"
+  - src: "3.jpg"
+    caption: "Vintage V-Neck, G-Star Sherpa Denim Jacket"
+  - src: "4.jpg"
+    caption: "Levi's Flannel, Ralph Lauren Bi-Swing Jacket"
+  - src: "5.jpg"
+    caption: "Theory Sweater, Carhartt Field Jacket"
+  - src: "6.jpg"
+    caption: "Shakawear Raglan, Levi's Waffle Long Sleeve"
+  - src: "7.jpg"
+    caption: "GU Tank Top, Uniqlo Zip Up Hoodie"
+  - src: "8.jpg"
+    caption: "Suit"
 ---
 
 The bust is one of the oldest forms of portrait sculpture. It includes the head, neck, shoulders, and sometimes part of the chest. Why?

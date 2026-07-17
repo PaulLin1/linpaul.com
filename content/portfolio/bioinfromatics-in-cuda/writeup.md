@@ -5,8 +5,6 @@ github: "https://github.com/PaulLin1/bioinformatics-implementations"
 tags: ["C++"]
 ---
 
-# Bioinformatics Implementations
-
 A personal exploring high-performance sequence processing and GPU acceleration in C++ and CUDA.
 
 ## Motivation

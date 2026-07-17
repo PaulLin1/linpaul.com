@@ -1,41 +1,606 @@
-html, body {
-    margin: 0;
-    padding: 0;
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Type and spacing are fluid: every clamp() interpolates between a ~360px
+   phone and a ~1440px desktop, so nothing snaps at a breakpoint.
+--------------------------------------------------------------------------- */
+
+:root {
+    color-scheme: light;
+
+    --font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+
+    --step--1: clamp(0.78rem, 0.74rem + 0.18vw, 0.88rem);
+    --step-0: clamp(0.94rem, 0.90rem + 0.20vw, 1.05rem);
+    --step-1: clamp(1.08rem, 0.98rem + 0.45vw, 1.35rem);
+    --step-2: clamp(1.40rem, 1.12rem + 1.20vw, 2.10rem);
+
+    /* Gutters grow with the viewport instead of sitting at a fixed 2rem. */
+    --pad-inline: clamp(1rem, 4vw, 2.5rem);
+    --gap: clamp(1rem, 2vw, 1.75rem);
+    --gap-sm: 0.5rem;
+
+    --container: 72rem;
+    --measure: 74ch;
+
+    --tile-pad: 0.35rem 0.6rem;
+    --ink: #111;
+    --ink-soft: #555;
+    --rule: rgba(0, 0, 0, 0.1);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------------------
+   App shell
+
+   The window itself never scrolls. The header is fixed height and the content
+   area takes exactly the space that's left, so the scroll always happens inside
+   a content box. Every box below sizes off available space (flex + min-height:0)
+   rather than a guessed vh number, which is what makes it hold up on any window.
+--------------------------------------------------------------------------- */
+
+html {
     height: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    background-image: url('/wallpapers/wallpaper.webp');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    margin: 0;
+    /* Dynamic viewport height: tracks mobile browser chrome showing/hiding. */
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: var(--step-0);
+    line-height: 1.55;
+    color: var(--ink);
+    /* Long URLs and code tokens wrap instead of forcing a horizontal scrollbar. */
+    overflow-wrap: break-word;
 }
 
-* {
-    font-family: "Helvetica Neue";
-    font-weight: 300;
+/* The wallpaper lives on a fixed pseudo-element rather than `background-attachment`,
+   which is unreliable on iOS. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: url("/wallpapers/wallpaper.webp") center / cover no-repeat;
 }
+
+main {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+}
+
+img,
+svg,
+iframe {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+/* Nothing is bold: headings and emphasis stay at the body's light weight. */
+:is(h1, h2, h3, h4, h5, h6, strong, b) {
+    font-weight: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Header / nav
+--------------------------------------------------------------------------- */
+
+.site-header {
+    flex: none;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+}
+
+.site-nav {
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 0.75rem var(--pad-inline);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.site-nav a {
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: color 120ms ease;
+}
+
+.site-nav a:hover {
+    color: var(--ink);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Page shell
+--------------------------------------------------------------------------- */
+
+.page {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: clamp(1rem, 3vh, 2.5rem) var(--pad-inline) clamp(1rem, 4vh, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+/* Headings and other chrome keep their natural height... */
+.page > * {
+    flex: none;
+}
+
+/* ...and the scrolling region soaks up whatever is left. */
+.page > .scroll,
+.page > .split {
+    flex: 1;
+    min-height: 0;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll regions
+   The only things on the site that scroll.
+--------------------------------------------------------------------------- */
+
+.scroll {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    overflow-y: auto;
+    min-height: 0;
+    /* Nothing to chain to, but this stops the scroll bouncing the whole app. */
+    overscroll-behavior: contain;
+}
+
+/* Content keeps its natural height and overflows the box, instead of being
+   squeezed to fit it. */
+.scroll > * {
+    flex: none;
+}
+
+.scroll,
+.split,
+.split > *,
+.carousel__track {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.scroll::-webkit-scrollbar,
+.split::-webkit-scrollbar,
+.split > *::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll::-webkit-scrollbar-thumb,
+.split::-webkit-scrollbar-thumb,
+.split > *::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.scroll::-webkit-scrollbar-track,
+.split::-webkit-scrollbar-track,
+.split > *::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Tiles
+--------------------------------------------------------------------------- */
+
+.tile {
+    display: inline-block;
+    margin: 0;
+    padding: var(--tile-pad);
+    background: white;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Full-bleed variant for list rows, so their edges line up. */
+.tile--block {
+    display: block;
+    width: 100%;
+}
+
+h1.tile {
+    font-size: var(--step-2);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+a.tile {
+    transition: background-color 120ms ease;
+}
+
+a.tile:hover {
+    background: #f2f2f2;
+}
+
+/* ---------------------------------------------------------------------------
+   List rows (portfolio, blog, links)
+--------------------------------------------------------------------------- */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.1rem 1rem;
+    width: 100%;
+}
+
+.row__meta {
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+}
+
+/* ---------------------------------------------------------------------------
+   Markdown
+--------------------------------------------------------------------------- */
+
+.markdown {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    max-width: var(--measure);
+    min-width: 0;
+}
+
+.markdown > * {
+    margin: 0;
+    padding: var(--tile-pad);
+    background: white;
+}
+
+.markdown :is(h1, h2, h3) {
+    line-height: 1.25;
+}
+
+.markdown h1 {
+    font-size: var(--step-2);
+}
+.markdown h2 {
+    font-size: var(--step-1);
+}
+.markdown h3 {
+    font-size: var(--step-0);
+}
+
+.markdown :is(ul, ol) {
+    padding-inline-start: 1.75rem;
+}
+
+.markdown li + li {
+    margin-top: 0.15rem;
+}
+
+.markdown img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.markdown blockquote {
+    border-inline-start: 3px solid var(--rule);
+}
+
+/* Code and tables are the two things that blow out width. Let each one scroll
+   inside its own box rather than widening the column. */
+.markdown pre {
+    overflow-x: auto;
+    font-size: var(--step--1);
+    line-height: 1.5;
+}
+
+.markdown :is(code, pre) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.markdown > table {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+}
+
+.markdown :is(th, td) {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--rule);
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Two-column content layouts
+
+   Narrow: one column, and the whole thing is the scroll box.
+   Wide:   two columns, and each column scrolls on its own.
+--------------------------------------------------------------------------- */
+
+.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap);
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+@media (min-width: 60rem) {
+    .split {
+        overflow: hidden;
+        align-items: stretch;
+    }
+
+    /* Each column becomes its own scroll box, sized to the row height. */
+    .split > * {
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    /* Text gets two thirds, the image rail one. */
+    .split--rail {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+
+    /* Text and carousel share the width evenly. */
+    .split--media {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+.stack img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: white;
+}
+
+/* min() stops the track overflowing when the column is narrower than the 16rem
+   minimum — the classic auto-fit overflow bug. */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+    gap: var(--gap-sm);
+}
+
+.figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    min-width: 0;
+}
+
+.figure img {
+    display: block;
+    width: 100%;
+    height: clamp(12rem, 24vw, 18rem);
+    object-fit: contain;
+    background: white;
+}
+
+.figure figcaption {
+    background: white;
+    padding: var(--tile-pad);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------------------
+   Carousel
+--------------------------------------------------------------------------- */
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    min-height: 0;
+}
+
+.carousel__track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    min-height: 0;
+}
+
+.carousel__slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    min-width: 0;
+}
+
+.carousel__slide img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    background: white;
+    /* Narrow: the photo's own ratio drives its height. */
+    aspect-ratio: var(--ratio, 0.75);
+}
+
+.carousel__slide figcaption {
+    flex: none;
+    background: white;
+    padding: var(--tile-pad);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+}
+
+.carousel__controls {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.carousel__controls button {
+    background: white;
+    border: none;
+    padding: 0.25rem 0.75rem;
+    font: inherit;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.carousel__controls button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.carousel__count {
+    background: white;
+    padding: var(--tile-pad);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    margin-inline-start: auto;
+}
+
+@media (min-width: 60rem) {
+    /* Wide: the column has a known height, so drive the photo off that — it
+       fills the space actually available instead of a guessed vh number, and
+       the carousel never needs to scroll vertically. */
+    .split > .carousel {
+        overflow: hidden;
+    }
+
+    .carousel {
+        height: 100%;
+        /* Shrink to the photo's rendered width (published by the component) and
+           center in the column, so the track, caption and controls line up with
+           the image edges instead of spanning the wider column. */
+        width: var(--frame-width, 100%);
+        max-width: 100%;
+        margin-inline: auto;
+    }
+
+    .carousel__track {
+        flex: 1;
+    }
+
+    .carousel__slide img {
+        flex: 1;
+        min-height: 0;
+        /* Height comes from the column; width follows from the photo's own
+           ratio and the image is centered — so the frame hugs the picture
+           instead of letterboxing white bars beside a portrait photo. */
+        height: auto;
+        width: auto;
+        max-width: 100%;
+        align-self: center;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Background collage
+
+   A fixed field of images behind the page. The swap loop in RandomImages adds
+   and removes nodes; the crossfade is all here — a keyframe fades each image in
+   on mount, and an opacity transition fades it out once it's marked exiting.
+   Both run over --collage-fade, set on the container from the same JS constant.
+--------------------------------------------------------------------------- */
+
+.collage {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.collage__img {
+    position: absolute;
+    object-fit: cover;
+    opacity: 0.8;
+    animation: collage-fade-in var(--collage-fade, 2s) ease-in-out backwards;
+    transition: opacity var(--collage-fade, 2s) ease-in-out;
+}
+
+/* The `to` is the class's own 0.8, so the mount fade never overshoots. An image
+   only exits long after this has finished, so it never fights the transition. */
+@keyframes collage-fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
 
 .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
 
-.markdown {
-    max-height: 60vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-.markdown::-webkit-scrollbar {
-    display: none;
-}
-.markdown > * {
-    display: block;
-    padding: 0.25rem 0.5rem;
-    background: white;
-    margin-bottom: 0.5rem;
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* The collage is a slow opacity crossfade, not movement, so the blanket
+       rule above would make its images snap in and out — a pop. Keep it fading
+       (this is what framer-motion did before). Higher specificity than `*`
+       wins even against the !important reset. */
+    .collage__img {
+        animation-duration: var(--collage-fade, 2s) !important;
+        transition-duration: var(--collage-fade, 2s) !important;
+    }
 }

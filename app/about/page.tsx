@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import Line from "../components/Line";
 import CenteredLayout from "../components/MainLayout";
 import Markdown from "../components/Markdown";
+import Scroll from "../components/Scroll";
 import Section from "../components/Section";
 
 export default function AboutPage() {
@@ -19,30 +20,27 @@ export default function AboutPage() {
         <CenteredLayout>
             <Line as="h1">About</Line>
 
-            <Section>
-                <Markdown>{content}</Markdown>
-            </Section>
+            <Scroll>
+                <Section>
+                    <Markdown>{content}</Markdown>
+                </Section>
 
-            <div
-                style={{
-                    width: "100%",
-                    maxWidth: "600px",
-                    margin: "2rem auto 0",
-                }}
-            >
-                <Image
-                    src="/about.jpg"
-                    alt="Paul Lin"
-                    width={500}
-                    height={500}
-                    style={{
-                        width: "100%",
-                        height: "auto",
-                        display: "block",
-                    }}
-                    priority
-                />
-            </div>
+                <div style={{ width: "100%", maxWidth: "22rem" }}>
+                    <Image
+                        src="/ab.jpg"
+                        alt="Paul Lin"
+                        width={800}
+                        height={800}
+                        sizes="(max-width: 30rem) 100vw, 22rem"
+                        style={{
+                            width: "100%",
+                            height: "auto",
+                            display: "block",
+                        }}
+                        priority
+                    />
+                </div>
+            </Scroll>
         </CenteredLayout>
     );
 }

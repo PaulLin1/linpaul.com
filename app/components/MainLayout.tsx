@@ -1,22 +1,13 @@
 import React from "react";
 
-const containerStyle: React.CSSProperties = {
-    position: "fixed",
-    top: "8rem",
-    left: "50%",
-    transform: "translateX(-50%)",
-    maxWidth: "90vw",
-    padding: "2rem",
-    display: "flex",
-    flexDirection: "column",
-    gap: "2rem",
-    width: "100%",
-};
-
+/**
+ * The page shell. Stays in normal document flow so long pages simply scroll —
+ * width and gutters come from the fluid tokens in globals.css.
+ */
 export default function CenteredLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    return <div style={containerStyle}>{children}</div>;
+    return <div className="page">{children}</div>;
 }

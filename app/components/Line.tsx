@@ -4,31 +4,29 @@ export type LineProps<T extends React.ElementType> = {
     as?: T;
     children: React.ReactNode;
     href?: string;
+    /** Stretch to the full column width so stacked rows share an edge. */
+    block?: boolean;
 } & React.ComponentPropsWithoutRef<T>;
 
+/** A line of text on the site's white chip. */
 const Line = <T extends React.ElementType = "span">({
     as,
     children,
     href,
-    style: styleProp,
+    block,
+    className,
     ...props
-}: LineProps<T> & { style?: React.CSSProperties }) => {
+}: LineProps<T> & { className?: string }) => {
     const Component = as || "span";
 
-    const style: React.CSSProperties = {
-        padding: "0.25rem 0.5rem",
-        margin: 0,
-        backgroundColor: "white",
-        display: "inline-block",
-        color: "inherit",
-        textDecoration: "none",
-        ...styleProp,
-    };
+    const classes = ["tile", block && "tile--block", className]
+        .filter(Boolean)
+        .join(" ");
 
     return (
         <Component
             href={Component === "a" ? href : undefined}
-            style={style}
+            className={classes}
             {...props}
         >
             {children}

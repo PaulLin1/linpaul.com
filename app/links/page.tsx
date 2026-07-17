@@ -1,5 +1,6 @@
 import Line from "../components/Line";
 import CenteredLayout from "../components/MainLayout";
+import Scroll from "../components/Scroll";
 import Section from "../components/Section";
 
 export const metadata = { title: "Links" };
@@ -33,28 +34,27 @@ export default function LinksPage() {
         <CenteredLayout>
             <Line as="h1">Links</Line>
 
-            <Section>
-                {links.map((link) => (
-                    <Line
-                        key={link.href}
-                        as="a"
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                width: "100%",
-                            }}
+            <Scroll>
+                <Section>
+                    {links.map((link) => (
+                        <Line
+                            key={link.href}
+                            as="a"
+                            href={link.href}
+                            block
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
-                            <span>{link.title}</span>
-                            <span>{link.description}</span>
-                        </div>
-                    </Line>
-                ))}
-            </Section>
+                            <span className="row">
+                                <span>{link.title}</span>
+                                <span className="row__meta">
+                                    {link.description}
+                                </span>
+                            </span>
+                        </Line>
+                    ))}
+                </Section>
+            </Scroll>
         </CenteredLayout>
     );
 }

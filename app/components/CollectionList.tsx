@@ -1,5 +1,6 @@
 import Line from "./Line";
 import CenteredLayout from "./MainLayout";
+import Scroll from "./Scroll";
 import Section from "./Section";
 import { getCollection } from "@/lib/content";
 
@@ -19,40 +20,37 @@ export default function CollectionList({
     return (
         <CenteredLayout>
             <Line as="h1">{heading}</Line>
-            <Section>
-                {entries.map(({ slug, href, data }) => {
-                    const tags = data.tags ?? [];
+            <Scroll>
+                <Section>
+                    {entries.map(({ slug, href, data }) => {
+                        const tags = data.tags ?? [];
 
-                    return (
-                        <Line
-                            key={slug}
-                            as="a"
-                            href={href}
-                            style={
-                                highlightTag && tags.includes(highlightTag)
-                                    ? { backgroundColor: "yellow" }
-                                    : undefined
-                            }
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    width: "100%",
-                                    alignItems: "center",
-                                    gap: "1rem",
-                                }}
+                        return (
+                            <Line
+                                key={slug}
+                                as="a"
+                                href={href}
+                                block
+                                style={
+                                    highlightTag && tags.includes(highlightTag)
+                                        ? { backgroundColor: "yellow" }
+                                        : undefined
+                                }
                             >
-                                <span>{data.title ?? slug}</span>
-                                <span>
-                                    {tags.length > 0 ? tags.join(", ") : "No tags"}{" "}
-                                    | {data.date ?? "Unknown"}
+                                <span className="row">
+                                    <span>{data.title ?? slug}</span>
+                                    <span className="row__meta">
+                                        {tags.length > 0
+                                            ? tags.join(", ")
+                                            : "No tags"}{" "}
+                                        | {data.date ?? "Unknown"}
+                                    </span>
                                 </span>
-                            </div>
-                        </Line>
-                    );
-                })}
-            </Section>
+                            </Line>
+                        );
+                    })}
+                </Section>
+            </Scroll>
         </CenteredLayout>
     );
 }
