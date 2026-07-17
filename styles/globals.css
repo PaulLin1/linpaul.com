@@ -433,12 +433,19 @@ a.tile:hover {
    Carousel
 --------------------------------------------------------------------------- */
 
+/* No min-height here. Narrow, the carousel is its own auto-sized grid row, and
+   its height resolves through a percentage chain — the slide is `flex: 0 0 100%`
+   and the photo derives its height from `width: 100%` via aspect-ratio. That
+   width isn't definite while the row is being sized, so the carousel's intrinsic
+   contribution is 0 and only the automatic `min-height: auto` floor keeps the
+   row open. Setting `min-height: 0` here removes that floor and collapses the
+   row to 0px, clipping photo and caption while the controls overflow into view.
+   The wide layout needs the 0, and sets it once the column drives the height. */
 .carousel {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     min-width: 0;
-    min-height: 0;
 }
 
 .carousel__track {
@@ -514,7 +521,10 @@ a.tile:hover {
     }
 
     .carousel {
+        /* Safe here, unlike narrow: the column gives the height, so nothing is
+           relying on an intrinsic contribution that could collapse to 0. */
         height: 100%;
+        min-height: 0;
         /* Shrink to the photo's rendered width (published by the component) and
            center in the column, so the track, caption and controls line up with
            the image edges instead of spanning the wider column. */
