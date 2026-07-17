@@ -10,13 +10,15 @@ const POOL = Array.from({ length: IMAGE_MAX }, (_, i) => i + 1).filter(
 );
 
 /* Pacing. One image is swapped per tick, so the collage turns over its full
-   set roughly every SLOTS * TICK — about 30s. */
+   set roughly every SLOTS * TICK — about 15s. Lifespan is derived from TICK to
+   keep that balance: 15 images expiring over 15 ticks is exactly the one-in-one-out
+   rate the swap loop can sustain, so TICK is the only dial worth turning here. */
 const COLS = 5;
 const ROWS = 3;
 const SLOTS = COLS * ROWS;
-const TICK = 2000;
+const TICK = 1000;
 const IMAGE_LIFESPAN = SLOTS * TICK;
-const FADE = 2;
+const FADE = 1.2;
 const FADE_MS = FADE * 1000;
 /** An image number can't return until its old copy is off screen for good. */
 const REUSE_COOLDOWN = FADE_MS + 2000;
