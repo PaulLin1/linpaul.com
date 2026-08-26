@@ -7,15 +7,17 @@ import type { LayoutProps } from "./index";
  *  entries. The rail drops below the text once the window is too narrow for two
  *  columns. */
 export default function SplitLayout({ entry }: LayoutProps) {
+    const hasImages = entry.images.length > 0;
+
     return (
         <>
             <ContentHeader entry={entry} />
-            <div className="split split--rail">
+            <div className={`split${hasImages ? " split--rail" : ""}`}>
                 <Section>
                     <Markdown>{entry.content}</Markdown>
                 </Section>
 
-                {entry.images.length > 0 && (
+                {hasImages && (
                     <div className="stack">
                         {entry.images.map((image, i) => (
                             <img

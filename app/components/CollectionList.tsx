@@ -8,12 +8,9 @@ import { getCollection } from "@/lib/content";
 export default function CollectionList({
     collection,
     heading,
-    highlightTag,
 }: {
     collection: string;
     heading: string;
-    /** Entries carrying this tag get a yellow row. */
-    highlightTag?: string;
 }) {
     const entries = getCollection(collection);
 
@@ -23,20 +20,12 @@ export default function CollectionList({
             <Scroll>
                 <Section>
                     {entries.map(({ slug, href, data }) => {
-                        const tags = data.tags ?? [];
+                        const tags = [...(data.tags ?? [])].sort((a, b) =>
+                            a.localeCompare(b)
+                        );
 
                         return (
-                            <Line
-                                key={slug}
-                                as="a"
-                                href={href}
-                                block
-                                style={
-                                    highlightTag && tags.includes(highlightTag)
-                                        ? { backgroundColor: "yellow" }
-                                        : undefined
-                                }
-                            >
+                            <Line key={slug} as="a" href={href} block>
                                 <span className="row">
                                     <span>{data.title ?? slug}</span>
                                     <span className="row__meta">
