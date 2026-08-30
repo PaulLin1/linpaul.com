@@ -1,6 +1,7 @@
 import ContentHeader from "../ContentHeader";
 import Markdown from "../Markdown";
 import Section from "../Section";
+import { entryHasImages } from "@/lib/content";
 import type { LayoutProps } from "./index";
 
 /** Text left, a stack of images in a rail to the right. The default for portfolio
@@ -14,7 +15,9 @@ export default function SplitLayout({ entry }: LayoutProps) {
             <ContentHeader entry={entry} />
             <div className={`split${hasImages ? " split--rail" : ""}`}>
                 <Section>
-                    <Markdown>{entry.content}</Markdown>
+                    <Markdown wide={!entryHasImages(entry)}>
+                        {entry.content}
+                    </Markdown>
                 </Section>
 
                 {hasImages && (

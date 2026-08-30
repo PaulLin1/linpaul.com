@@ -1,11 +1,26 @@
 ---
 title: "Micro Silk"
 date: "2026"
-tags: ["Design", "AI", "Full Stack"]
+tags: ["Full Stack", "AI", "Search"]
 ---
 
-Using Evolutionary Graph Pruning to Improve Transcoder-Based Interpretability of LLMs was my final project for the graduate level course CSE 848: Computational Evolution. I worked with my friend from AI Club, Uzair Mohammed. Around the beginning of the semester, I became interested in AI interpretability. Luckily, Uzair was experienced with the topic, with multiple ongoing research projects. When the teacher announced that the final project would be an open ended project related to computational evolution, I knew that I had to twist it in some way to work on an interpretability problem with Uzair.
+Micro Silk is a personal project built on top of Are.na, a platform where
+people collect and organize images, links, and text into curated "channels."
+I'd spent a lot of time browsing an app called Silk and wanted to make my own version of it. Using the new Are.na API, I got similar data that I used to experiment. I recreated the masonry feed (kind of like Pinterest-style feed), magic search, and channels from Silk. I also added a dynamic graph view using embeddings inspired by spiral.soot and t-SNE graphs I used for a computer vision research project.
 
-What resulted was an evolutionary algorithm to prune attribution graphs for LLM's. Attribution graph's are currently one of the clearest ways to explain the inputs of a model to the models. They allow users to see which nodes and layers had the biggest influence on the results. To get the graph, the entire model is loaded and greedily pruned to show which where that influence occured. Our algorithm takes the graph and uses a multi-objective evolutionary algorithm to simplify this process. The result is a cleaner attribution graph that makes distinguishing node importance more easily.
+Under the hood, every image block gets embedded with a fine-tuned CLIP model
+and stored in Postgres with pgvector, indexed with HNSW for fast
+approximate nearest-neighbor search. That embedding space powers two
+features: a "magic search" bar that embeds a text query and ranks images by
+cosine similarity instead of keyword matching, and an "explore" mode that
+turns any image into a node in a pannable graph of its nearest visual
+neighbors, so you can wander from one image to the next by similarity rather
+than by clicking back and forth through channels.
 
-To read our full report, click [here](https://drive.google.com/file/d/1lvKREHI47p0W_Fzw7p9lUAw8tECPdcic/view).
+The rest is a fairly standard full-stack setup. React on the
+frontend with an infinite-scroll feed, a scraper/ingest pipeline that pulls
+channels, blocks, and connections from the Are.na API, and images served off
+R2. It's deployed on Vercel.
+
+You can try it at [https://micro-silk-pi.vercel.app/](https://micro-silk-pi.vercel.app/), or see
+the code [on GitHub](https://github.com/PaulLin1/micro-silk).

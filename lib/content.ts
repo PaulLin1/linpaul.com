@@ -127,6 +127,17 @@ export function getEntry(collection: string, slug: string): Entry | null {
     };
 }
 
+/** True if the entry shows any image: a rail/gallery image, or one embedded in
+ *  the markdown body (`![...](...)` or a raw `<img>`). Layouts use this to decide
+ *  whether the text column should stay at a readable measure or run full width. */
+export function entryHasImages(entry: Entry): boolean {
+    return (
+        entry.images.length > 0 ||
+        /!\[[^\]]*\]\([^)]*\)/.test(entry.content) ||
+        /<img[\s/>]/i.test(entry.content)
+    );
+}
+
 /** Entries in a collection, newest first. Body and images are omitted. */
 export function getCollection(collection: string): EntrySummary[] {
     return listSlugs(collection)

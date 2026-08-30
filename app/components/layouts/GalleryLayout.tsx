@@ -2,6 +2,7 @@ import ContentHeader from "../ContentHeader";
 import Markdown from "../Markdown";
 import Scroll from "../Scroll";
 import Section from "../Section";
+import { entryHasImages } from "@/lib/content";
 import type { LayoutProps } from "./index";
 
 /** Text on top, a captioned grid of images below, the pair scrolling together in
@@ -12,7 +13,9 @@ export default function GalleryLayout({ entry }: LayoutProps) {
             <ContentHeader entry={entry} />
             <Scroll>
                 <Section>
-                    <Markdown>{entry.content}</Markdown>
+                    <Markdown wide={!entryHasImages(entry)}>
+                        {entry.content}
+                    </Markdown>
                 </Section>
 
                 {entry.images.length > 0 && (

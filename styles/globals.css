@@ -280,6 +280,11 @@ a.tile:hover {
     min-width: 0;
 }
 
+/* No image beside the text: let it fill the column instead of the reading measure. */
+.markdown--wide {
+    max-width: none;
+}
+
 .markdown > * {
     margin: 0;
     padding: var(--tile-pad);

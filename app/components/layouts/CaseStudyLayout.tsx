@@ -2,6 +2,7 @@ import ContentHeader from "../ContentHeader";
 import ImageCarousel from "../ImageCarousel";
 import Markdown from "../Markdown";
 import Section from "../Section";
+import { entryHasImages } from "@/lib/content";
 import type { LayoutProps } from "./index";
 
 /** Text left, a captioned carousel you scroll left and right on the right. The
@@ -14,7 +15,9 @@ export default function CaseStudyLayout({ entry }: LayoutProps) {
             <ContentHeader entry={entry} />
             <div className={`split${hasImages ? " split--media" : ""}`}>
                 <Section>
-                    <Markdown>{entry.content}</Markdown>
+                    <Markdown wide={!entryHasImages(entry)}>
+                        {entry.content}
+                    </Markdown>
                 </Section>
 
                 {hasImages && (
