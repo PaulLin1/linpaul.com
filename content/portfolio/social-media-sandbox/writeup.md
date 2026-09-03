@@ -1,12 +1,12 @@
 ---
-title: "Micro Silk"
+title: "Social Media Sandbox"
 date: "2026"
-tags: ["Full Stack", "AI", "Search"]
+tags: ["Full Stack", "AI", "Search", "Design"]
 ---
 
-Micro Silk is a personal project built on top of Are.na, a platform where
+The Social Media Sandbox is a personal project built on top of Are.na, a platform where
 people collect and organize images, links, and text into curated "channels."
-I'd spent a lot of time browsing an app called Silk and wanted to make my own version of it. Using the new Are.na API, I got similar data that I used to experiment. I recreated the masonry feed (kind of like Pinterest-style feed), magic search, and channels from Silk. I also added a dynamic graph view using embeddings inspired by spiral.soot and t-SNE graphs I used for a computer vision research project.
+I'd spent a lot of time browsing an app called Silk and wanted to make my own version of it. Using the new Are.na API, I got similar data that I used to experiment. I recreated the masonry feed (kind of like Pinterest-style feed), magic search, and channels from Silk. I also added a dynamic graph view using embeddings inspired by spiral.soot and t-SNE graphs I used for a computer vision research project. Eventually the project involved into a sandbox environment where I experiemented with different ways or representing media for social media.
 
 Under the hood, every image block gets embedded with a fine-tuned CLIP model
 and stored in Postgres with pgvector, indexed with HNSW for fast
@@ -21,6 +21,8 @@ The rest is a fairly standard full-stack setup. React on the
 frontend with an infinite-scroll feed, a scraper/ingest pipeline that pulls
 channels, blocks, and connections from the Are.na API, and images served off
 R2. It's deployed on Vercel.
+
+I hope to add more features to this project, while restricting myself to the initial Are.na data I pulled for practicality. One recent feature I added was an ambient mode which I first developed for my personal website.
 
 You can try it at [https://micro-silk-pi.vercel.app/](https://micro-silk-pi.vercel.app/), or see
 the code [on GitHub](https://github.com/PaulLin1/micro-silk).
