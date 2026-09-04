@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// The family masthead: a translucent bar over the page-wide random-image
+// field (RandomImages, mounted in the layout and sitting behind everything).
+// Wordmark left, nav as a row of rounded pills. See design-system/DESIGN.md.
 const navLinks = [
-    { href: "/", label: "Home" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/experiences", label: "Experiences" },
     { href: "/blog", label: "Blog" },
@@ -18,12 +20,12 @@ export default function Nav() {
 
     return (
         <header className="site-header">
+            <Link href="/" className="site-brand">
+                Paul Lin
+            </Link>
             <nav className="site-nav">
                 {navLinks.map(({ href, label }) => {
-                    const active =
-                        href === "/"
-                            ? pathname === "/"
-                            : pathname.startsWith(href);
+                    const active = pathname.startsWith(href);
 
                     return (
                         <Link

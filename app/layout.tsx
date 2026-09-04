@@ -43,8 +43,8 @@ export default function Layout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
             <body>
-                <Nav />
                 <RandomImages />
+                <Nav />
                 <main>{children}</main>
             </body>
         </html>
