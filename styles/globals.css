@@ -14,10 +14,7 @@
 :root {
     color-scheme: light;
 
-    --step--1: clamp(0.78rem, 0.74rem + 0.18vw, 0.88rem);
-    --step-0: clamp(0.94rem, 0.90rem + 0.20vw, 1.05rem);
-    --step-1: clamp(1.08rem, 0.98rem + 0.45vw, 1.35rem);
-    --step-2: clamp(1.40rem, 1.12rem + 1.20vw, 2.10rem);
+    /* --step-*, --tile-hover and --radius are family-wide, from tokens.css. */
 
     /* Gutters grow with the viewport instead of sitting at a fixed 2rem. */
     --pad-inline: clamp(1rem, 4vw, 2.5rem);
@@ -32,10 +29,6 @@
     --ink: var(--color-ink);
     --ink-soft: var(--color-ink-soft);
     --rule: var(--color-rule);
-
-    /* --radius (soft corners) is now family-wide, from tokens.css. Solid hover
-       fill for the paper chips — no transparency. */
-    --tile-hover: #f0f0f0;
 }
 
 *,
@@ -238,31 +231,20 @@ a {
     flex: none;
 }
 
+/* Scroll regions still scroll, but the bar itself never shows. */
 .scroll,
 .split,
 .split > *,
 .carousel__track {
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb) transparent;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .scroll::-webkit-scrollbar,
 .split::-webkit-scrollbar,
-.split > *::-webkit-scrollbar {
-    width: 8px;
-}
-
-.scroll::-webkit-scrollbar-thumb,
-.split::-webkit-scrollbar-thumb,
-.split > *::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
-    border-radius: var(--radius);
-}
-
-.scroll::-webkit-scrollbar-track,
-.split::-webkit-scrollbar-track,
-.split > *::-webkit-scrollbar-track {
-    background: transparent;
+.split > *::-webkit-scrollbar,
+.carousel__track::-webkit-scrollbar {
+    display: none;
 }
 
 /* ---------------------------------------------------------------------------
@@ -414,6 +396,17 @@ a.tile:hover {
 
 /* Code and tables are the two things that blow out width. Let each one scroll
    inside its own box rather than widening the column. */
+.markdown pre,
+.markdown > table {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.markdown pre::-webkit-scrollbar,
+.markdown > table::-webkit-scrollbar {
+    display: none;
+}
+
 .markdown pre {
     overflow-x: auto;
     font-size: var(--step--1);
@@ -476,6 +469,14 @@ a.tile:hover {
     .split--media {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
+
+    /* With a hero the media column stacks two images. Cap it narrow: the pair
+       is sized off this width (full width, natural height), so a smaller cap
+       keeps them a sensible size and short enough that hero + image + caption
+       + controls all land on screen without scrolling. */
+    .split--media.split--hero {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    }
 }
 
 .stack {
@@ -521,6 +522,57 @@ a.tile:hover {
     padding: var(--tile-pad);
     font-size: var(--step--1);
     color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------------------
+   Case-study media column
+
+   Text down the left, media down the right. With a `hero:` (a GIF demo) the
+   column becomes a stacked pair — hero on top, carousel below. Wide, the whole
+   column is bounded to the row height and the two images *shrink to fit* it
+   together, so the carousel's caption and controls are always on screen without
+   scrolling. The grid track then hugs that fitted width, so no letterbox bars.
+   Without a hero it's just the carousel, height-bounded the same way.
+--------------------------------------------------------------------------- */
+
+.media-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+.hero {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+/* Natural dimensions: full width, height off the file's own ratio — no fixed
+   band, so no letterbox bars. The narrow column cap (`.split--hero`) is what
+   keeps it a sensible size wide. */
+.hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--color-paper);
+    border-radius: var(--radius);
+}
+
+.hero figcaption {
+    background: var(--color-paper);
+    padding: var(--tile-pad);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    border-radius: var(--radius);
+}
+
+/* Let the carousel image use the screenshot's own ratio rather than the
+   frontmatter `aspect` (which only drives the narrow-view height). */
+.media-col--stacked .carousel__slide img {
+    aspect-ratio: auto;
 }
 
 /* ---------------------------------------------------------------------------
@@ -607,40 +659,52 @@ a.tile:hover {
 }
 
 @media (min-width: 60rem) {
-    /* Wide: the column has a known height, so drive the photo off that — it
-       fills the space actually available instead of a guessed vh number, and
-       the carousel never needs to scroll vertically. */
-    .split > .carousel {
+    /* --- Carousel only (no hero): bound to the row height ------------------
+       The column has a known height, so drive the photo off that — it fills
+       the space available and the carousel never scrolls vertically. */
+    .split > .media-col:not(.media-col--stacked) {
         overflow: hidden;
     }
 
-    .carousel {
-        /* Safe here, unlike narrow: the column gives the height, so nothing is
-           relying on an intrinsic contribution that could collapse to 0. */
+    .media-col:not(.media-col--stacked) > .carousel {
         height: 100%;
         min-height: 0;
         /* Shrink to the photo's rendered width (published by the component) and
-           center in the column, so the track, caption and controls line up with
-           the image edges instead of spanning the wider column. */
+           center, so track, caption and controls line up with the image edges
+           instead of spanning the wider column. */
         width: var(--frame-width, 100%);
         max-width: 100%;
         margin-inline: auto;
     }
 
-    .carousel__track {
+    .media-col:not(.media-col--stacked) .carousel__track {
         flex: 1;
     }
 
-    .carousel__slide img {
+    .media-col:not(.media-col--stacked) .carousel__slide img {
         flex: 1;
         min-height: 0;
-        /* Height comes from the column; width follows from the photo's own
-           ratio and the image is centered — so the frame hugs the picture
-           instead of letterboxing white bars beside a portrait photo. */
+        /* Height from the column; width follows the photo's ratio and centers —
+           the frame hugs the picture, no letterbox bars. */
         height: auto;
         width: auto;
         max-width: 100%;
         align-self: center;
+    }
+
+    /* --- Hero + carousel: a proportional stack ------------------------
+       Hero and carousel image both run the narrow column's full width at
+       their natural height — same width, ratio-true height, no bars, normal
+       reading order (image then caption). The column is capped narrow enough
+       (grid, above) that the whole stack clears the row on a normal window;
+       it hugs the pair and only scrolls if a short window can't fit it. */
+    .split > .media-col--stacked {
+        align-self: start;
+        max-height: 100%;
+    }
+
+    .media-col--stacked > .carousel {
+        width: 100%;
     }
 }
 

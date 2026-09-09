@@ -9,6 +9,7 @@ import type { LayoutProps } from "./index";
  *  columns. */
 export default function SplitLayout({ entry }: LayoutProps) {
     const hasImages = entry.images.length > 0;
+    const title = entry.data.title ?? entry.slug;
 
     return (
         <>
@@ -26,10 +27,7 @@ export default function SplitLayout({ entry }: LayoutProps) {
                             <img
                                 key={image.src}
                                 src={image.src}
-                                alt={
-                                    image.alt ??
-                                    `${entry.data.title ?? entry.slug} ${i + 1}`
-                                }
+                                alt={image.alt ?? `${title} ${i + 1}`}
                                 loading="lazy"
                                 decoding="async"
                             />

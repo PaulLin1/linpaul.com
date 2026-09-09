@@ -6,8 +6,9 @@ export const CONTENT_ROOT = path.join(process.cwd(), "content");
 
 const IMAGE_EXTS = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".avif", ".svg"];
 
-/** Filenames treated as the body of a folder-based entry, in priority order. */
-const ENTRY_FILES = ["index.md", "writeup.md"];
+/** Filenames treated as the body of a folder-based entry, in priority order.
+ *  `writeup.md` is the convention; `index.md` stays as a legacy fallback. */
+const ENTRY_FILES = ["writeup.md", "index.md"];
 
 export interface ImageRef {
     /** Fully resolved URL, ready for <img src>. */
@@ -26,6 +27,10 @@ export interface Frontmatter {
     aspect?: string;
     /** Either bare filenames or objects with captions. Omit to auto-discover. */
     images?: Array<string | { src: string; caption?: string; alt?: string }>;
+    /** A single image (often a GIF demo) shown full-width above the page body,
+     *  spanning both columns of a two-column layout. Bare filename or an object
+     *  with a caption. Auto-excluded from `images` when auto-discovering. */
+    hero?: string | { src: string; caption?: string; alt?: string };
     [key: string]: unknown;
 }
 
@@ -35,10 +40,12 @@ export interface Entry {
     href: string;
     data: Frontmatter;
     content: string;
+    /** The `hero:` image, resolved. `null` when the entry has none. */
+    hero: ImageRef | null;
     images: ImageRef[];
 }
 
-export type EntrySummary = Omit<Entry, "content" | "images">;
+export type EntrySummary = Omit<Entry, "content" | "images" | "hero">;
 
 const collator = new Intl.Collator(undefined, {
     numeric: true,
@@ -70,6 +77,27 @@ function toUrl(collection: string, slug: string, src: string) {
     return `/api/image/${collection}/${slug}/${src}`;
 }
 
+/** The raw filename a `hero:` reference points at, for excluding from auto-discovery. */
+function heroFile(data: Frontmatter): string | null {
+    if (typeof data.hero === "string") return data.hero;
+    if (data.hero && typeof data.hero === "object") return data.hero.src;
+    return null;
+}
+
+function loadHero(
+    collection: string,
+    slug: string,
+    data: Frontmatter,
+): ImageRef | null {
+    if (typeof data.hero === "string") {
+        return { src: toUrl(collection, slug, data.hero) };
+    }
+    if (data.hero && typeof data.hero === "object") {
+        return { ...data.hero, src: toUrl(collection, slug, data.hero.src) };
+    }
+    return null;
+}
+
 function loadImages(
     collection: string,
     slug: string,
@@ -86,9 +114,12 @@ function loadImages(
 
     if (!dir) return [];
 
+    const hero = heroFile(data);
+
     return fs
         .readdirSync(dir)
         .filter(isImage)
+        .filter((file) => file !== hero)
         .sort(collator.compare)
         .map((file) => ({ src: toUrl(collection, slug, file) }));
 }
@@ -123,6 +154,7 @@ export function getEntry(collection: string, slug: string): Entry | null {
         href: `/${collection}/${slug}`,
         data: frontmatter,
         content,
+        hero: loadHero(collection, slug, frontmatter),
         images: loadImages(collection, slug, source.dir, frontmatter),
     };
 }
@@ -143,7 +175,10 @@ export function getCollection(collection: string): EntrySummary[] {
     return listSlugs(collection)
         .map((slug) => getEntry(collection, slug))
         .filter((entry): entry is Entry => entry !== null)
-        .map(({ content: _content, images: _images, ...summary }) => summary)
+        .map(
+            ({ content: _content, images: _images, hero: _hero, ...summary }) =>
+                summary,
+        )
         .sort(
             (a, b) =>
                 new Date(b.data.date ?? "").getTime() -
