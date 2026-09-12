@@ -122,14 +122,18 @@ a {
 .site-header {
     flex: none;
     display: flex;
-    flex-wrap: wrap;
+    /* Never wrap: brand stays put and the nav scrolls horizontally instead of
+       ever dropping to a second line (see .site-nav below). */
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     gap: var(--gap-sm) clamp(0.5rem, 2vw, 1rem);
     min-height: 3.5rem;
     width: 100%;
     /* Same left column as `.page` below it, so nav and content read as one
-       column with the collage filling the right 40% top to bottom. */
+       column with the collage filling the right 40% top to bottom. Below the
+       60rem breakpoint there's no room to spare for the collage, so this
+       relaxes to full width (see the media query near .page). */
     max-width: min(var(--container), 60%);
     margin-inline: 0;
     padding: 0.5rem var(--pad-inline);
@@ -138,6 +142,7 @@ a {
 }
 
 .site-brand {
+    flex: none;
     text-decoration: none;
     color: var(--color-ink);
     font-size: var(--step-1);
@@ -148,9 +153,19 @@ a {
 
 .site-nav {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0.35rem;
+    min-width: 0;
+    /* Scrolls internally rather than wrapping when it doesn't fit next to the
+       brand — the header stays a single line at every viewport width. */
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.site-nav::-webkit-scrollbar {
+    display: none;
 }
 
 /* Plain text — no fill, no border. Current page = accent color + underline. */
@@ -159,6 +174,7 @@ a {
     text-decoration: none;
     font-size: var(--step--1);
     color: var(--ink);
+    white-space: nowrap;
     transition: color 120ms ease;
 }
 
@@ -182,13 +198,29 @@ a {
     width: 100%;
     /* Kept clear of the collage, which now lives only in the right 40% of the
        viewport (.collage below) — content and background images never share
-       the same ground, so nothing needs to fight for contrast. */
+       the same ground, so nothing needs to fight for contrast. Below 60rem
+       there's no width to spare for that gutter (see the media query below),
+       so content runs full width and the collage steps aside instead. */
     max-width: min(var(--container), 60%);
     margin-inline: 0;
     padding: clamp(1rem, 3vh, 2.5rem) var(--pad-inline) clamp(1rem, 4vh, 2.5rem);
     display: flex;
     flex-direction: column;
     gap: var(--gap);
+}
+
+/* Narrow viewports: the 60%/40% split only works with room to spare. Below
+   this, let the header and page run the full width instead of squeezing
+   text and images into the left 60% of an already-small screen. */
+@media (max-width: 60rem) {
+    .site-header,
+    .page {
+        max-width: 100%;
+    }
+
+    .collage {
+        display: none;
+    }
 }
 
 /* Headings and other chrome keep their natural height... */
