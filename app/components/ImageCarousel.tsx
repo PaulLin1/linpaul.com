@@ -27,6 +27,16 @@ export default function ImageCarousel({
     const [index, setIndex] = useState(0);
     const ratio = parseAspect(aspect);
 
+    // Slide widths are only whole pixels by coincidence — `clientWidth` rounds,
+    // but flexbox keeps the real (fractional) layout. Multiplying a rounded
+    // width by the index drifts further from the true slide boundary with every
+    // step, which is what left the track resting between two slides. Reading
+    // each slide's actual `offsetLeft` matches CSS's own snap points exactly.
+    const slideLeft = useCallback((track: HTMLDivElement, target: number) => {
+        const slide = track.children[target] as HTMLElement | undefined;
+        return slide?.offsetLeft ?? 0;
+    }, []);
+
     const step = useCallback(
         (delta: number) => {
             const track = trackRef.current;
@@ -36,39 +46,66 @@ export default function ImageCarousel({
                 images.length - 1,
             );
             track.scrollTo({
-                left: target * track.clientWidth,
+                left: slideLeft(track, target),
                 behavior: "smooth",
             });
         },
-        [index, images.length],
+        [index, images.length, slideLeft],
     );
 
-    // Keep the counter in sync with swipes and trackpad scrolling.
+    // Keep the counter in sync with swipes and trackpad scrolling, by finding
+    // the slide whose offset is closest to the current scroll position rather
+    // than dividing by a rounded clientWidth.
     useEffect(() => {
         const track = trackRef.current;
         if (!track) return;
 
         const onScroll = () => {
-            if (track.clientWidth === 0) return;
-            setIndex(Math.round(track.scrollLeft / track.clientWidth));
+            let closest = 0;
+            let closestDistance = Infinity;
+            for (let i = 0; i < track.children.length; i++) {
+                const slide = track.children[i] as HTMLElement;
+                const distance = Math.abs(slide.offsetLeft - track.scrollLeft);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closest = i;
+                }
+            }
+            setIndex(closest);
         };
 
         track.addEventListener("scroll", onScroll, { passive: true });
         return () => track.removeEventListener("scroll", onScroll);
     }, []);
 
+    // Read the latest index without making the observer below depend on it —
+    // `index` changes on every scroll frame while swiping, and recreating the
+    // observer each time re-triggers the setup-time callback below.
+    const indexRef = useRef(0);
+    indexRef.current = index;
+
     // A resize changes the track width, which leaves scrollLeft pointing between
     // two slides. Snap back onto the current one so the view never sits halfway.
+    // Set up once: `observe()` always fires its callback immediately even when
+    // nothing has actually resized, and re-running this effect on every index
+    // change (from a swipe in progress) turned that into a corrective jump on
+    // every scroll frame — fighting the browser's own snap and, with enough
+    // slides to swipe across, leaving it resting between two of them.
     useEffect(() => {
         const track = trackRef.current;
         if (!track) return;
 
+        let isInitialCallback = true;
         const observer = new ResizeObserver(() => {
-            track.scrollTo({ left: index * track.clientWidth });
+            if (isInitialCallback) {
+                isInitialCallback = false;
+                return;
+            }
+            track.scrollTo({ left: slideLeft(track, indexRef.current) });
         });
         observer.observe(track);
         return () => observer.disconnect();
-    }, [index]);
+    }, [slideLeft]);
 
     // Publish the photo's rendered width so the stylesheet can shrink the whole
     // carousel — track, caption and controls — to hug the image instead of

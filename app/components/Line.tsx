@@ -1,4 +1,5 @@
 import React from "react";
+import NextLink from "next/link";
 
 export type LineProps<T extends React.ElementType> = {
     as?: T;
@@ -23,12 +24,19 @@ const Line = <T extends React.ElementType = "span">({
         .filter(Boolean)
         .join(" ");
 
+    // "a" goes through next/link so internal links navigate client-side
+    // (no full page reload, no collage/scroll reset) instead of as a plain
+    // anchor tag.
+    if (Component === "a" && href) {
+        return (
+            <NextLink href={href} className={classes} {...props}>
+                {children}
+            </NextLink>
+        );
+    }
+
     return (
-        <Component
-            href={Component === "a" ? href : undefined}
-            className={classes}
-            {...props}
-        >
+        <Component className={classes} {...props}>
             {children}
         </Component>
     );

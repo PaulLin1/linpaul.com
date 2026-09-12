@@ -77,7 +77,7 @@ body::before {
     position: fixed;
     inset: 0;
     z-index: -2;
-    background: var(--color-paper);
+    background: var(--surface-base);
 }
 
 main {
@@ -113,11 +113,10 @@ a {
 /* ---------------------------------------------------------------------------
    Header / nav
 
-   A frosted, translucent bar — the random-image field shows through it,
-   softly, the same as it shows through the rest of the page. Wordmark left,
-   nav as a row of rounded pills: the current page filled ink, the rest
-   outlined. `flex: none`, so the never-scrolls content box below takes
-   exactly the height that's left. (No footer — the site ends at the content.)
+   A solid, opaque bar — no glass, no line, no shadow. Wordmark left, nav as
+   plain text (current page underlined in the accent color). `flex: none`, so
+   the never-scrolls content box below takes exactly the height that's left.
+   (No footer — the site ends at the content.)
 --------------------------------------------------------------------------- */
 
 .site-header {
@@ -128,11 +127,14 @@ a {
     justify-content: space-between;
     gap: var(--gap-sm) clamp(0.5rem, 2vw, 1rem);
     min-height: 3.5rem;
+    width: 100%;
+    /* Same left column as `.page` below it, so nav and content read as one
+       column with the collage filling the right 40% top to bottom. */
+    max-width: min(var(--container), 60%);
+    margin-inline: 0;
     padding: 0.5rem var(--pad-inline);
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-bottom: 1px solid var(--ink);
+    position: relative;
+    background: var(--color-paper);
 }
 
 .site-brand {
@@ -151,27 +153,22 @@ a {
     gap: 0.35rem;
 }
 
-/* Solid paper pills so they read over the images; current page = filled ink. */
+/* Plain text — no fill, no border. Current page = accent color + underline. */
 .site-nav a {
-    padding: 0.2rem 0.75rem;
-    background: var(--color-paper);
-    border: 1px solid var(--ink);
-    border-radius: 999px;
+    padding: 0.2rem 0.4rem;
     text-decoration: none;
     font-size: var(--step--1);
     color: var(--ink);
-    transition:
-        background-color 120ms ease,
-        color 120ms ease;
+    transition: color 120ms ease;
 }
 
 .site-nav a:hover {
-    background: var(--tile-hover);
+    text-decoration: underline;
 }
 
 .site-nav a[aria-current="page"] {
-    background: var(--ink);
-    color: var(--color-paper);
+    color: var(--color-link);
+    text-decoration: underline;
 }
 
 
@@ -183,8 +180,11 @@ a {
     flex: 1;
     min-height: 0;
     width: 100%;
-    max-width: var(--container);
-    margin-inline: auto;
+    /* Kept clear of the collage, which now lives only in the right 40% of the
+       viewport (.collage below) — content and background images never share
+       the same ground, so nothing needs to fight for contrast. */
+    max-width: min(var(--container), 60%);
+    margin-inline: 0;
     padding: clamp(1rem, 3vh, 2.5rem) var(--pad-inline) clamp(1rem, 4vh, 2.5rem);
     display: flex;
     flex-direction: column;
@@ -254,9 +254,10 @@ a {
 .tile {
     display: inline-block;
     margin: 0;
-    padding: var(--tile-pad);
-    background: var(--color-paper);
-    border-radius: var(--radius);
+    /* Vertical breathing room only — no horizontal inset, so this lines up
+       with the page's own left edge (and with .site-brand in the header,
+       which uses the same --pad-inline gutter) instead of sitting indented. */
+    padding-block: 0.3rem;
     color: inherit;
     text-decoration: none;
 }
@@ -275,34 +276,18 @@ h1.tile {
 
 a.tile {
     color: var(--ink);
-    transition: background-color 120ms ease;
+    transition: color 120ms ease;
 }
 
 a.tile:hover {
-    background: var(--tile-hover);
+    text-decoration: underline;
 }
 
-/* Every text strip — list rows, page headings, standalone lines, and every
-   block of a writeup — is a rounded chip outlined in a rotating accent:
-   navy / red / cyan / iris, cycling. Yellow stays out of it. This is the
-   collage-of-color linpaul's About page is about. */
-.tile,
-.markdown > * {
-    border: 1.5px solid var(--color-navy);
-    border-radius: var(--radius);
-}
-:is(.tile, .markdown > *):nth-child(4n + 2) {
-    border-color: var(--color-red);
-}
-:is(.tile, .markdown > *):nth-child(4n + 3) {
-    border-color: var(--color-cyan);
-}
-:is(.tile, .markdown > *):nth-child(4n + 4) {
-    border-color: var(--color-iris);
-}
+/* Text strips — list rows, page headings, standalone lines, every block of a
+   writeup — sit directly on the page: no border, no chip fill behind them. */
 
-/* Same soft corners on the media blocks — images, captions, carousel
-   controls — so they read as chips too. */
+/* Media blocks — images, captions, carousel controls. --radius is 0, so this
+   is a no-op square corner, kept for the rare literal-circle element. */
 .stack img,
 .figure img,
 .figure figcaption,
@@ -350,8 +335,6 @@ a.tile:hover {
 
 .markdown > * {
     margin: 0;
-    padding: var(--tile-pad);
-    background: var(--color-paper);
 }
 
 .markdown :is(h1, h2, h3) {
@@ -426,7 +409,6 @@ a.tile:hover {
 
 .markdown :is(th, td) {
     padding: 0.3rem 0.6rem;
-    border: 1px solid var(--rule);
     text-align: left;
     white-space: nowrap;
 }
@@ -605,6 +587,9 @@ a.tile:hover {
 .carousel__slide {
     flex: 0 0 100%;
     scroll-snap-align: start;
+    /* Without this a fast swipe can blow past a slide and settle between two —
+       "always" forces the scroller to stop at every slide, one at a time. */
+    scroll-snap-stop: always;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -720,6 +705,9 @@ a.tile:hover {
 .collage {
     position: fixed;
     inset: 0;
+    /* Right 40% of the screen only — the left 60% is `.page`'s territory, so
+       images and text never occupy the same ground. */
+    left: 60%;
     overflow: hidden;
     z-index: -1;
     pointer-events: none;

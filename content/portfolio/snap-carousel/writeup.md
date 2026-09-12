@@ -16,7 +16,7 @@ images:
     caption: "4 · Center becomes selection"
 ---
 
-## Navigating a cluster of Macs
+## Initial Problem
 
 For my senior capstone our team worked with Apple on a setup assistant for distributed computing across a cluster of Macs. Aside from the technical problems, one UI problem sat at the center of it: how do you let someone move between machines while still giving them enough to understand each one? I led the UI design and spent about a month on interaction models before the final carousel.
 
@@ -42,4 +42,4 @@ SnapCarouselView(items, selection: $selection) { item, isExpanded in
 
 SnapCarousel shipped in the final cluster interface. During our presentation several people assumed it was a native SwiftUI component, and a Swift engineer from Apple called it out as a standout. The implementation was demanding, but that isn't what people saw — they just saw a machine move into focus and tell them more about itself.
 
-[View the component on GitHub](https://github.com/PaulLin1/SnapCarousel)
+View the component [on GitHub](https://github.com/PaulLin1/SnapCarousel)
