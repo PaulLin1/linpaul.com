@@ -484,6 +484,12 @@ a.tile:hover {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
 
+    /* Text and the image grid share the width evenly, giving the grid room
+       for more than one column. */
+    .split--gallery {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
     /* With a hero the media column stacks two images. Cap it narrow: the pair
        is sized off this width (full width, natural height), so a smaller cap
        keeps them a sensible size and short enough that hero + image + caption

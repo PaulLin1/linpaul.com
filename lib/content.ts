@@ -25,6 +25,8 @@ export interface Frontmatter {
     github?: string;
     /** Image aspect ratio as width/height, e.g. "3/4". Used by image layouts. */
     aspect?: string;
+    /** Fixed column count for the gallery grid. Omit to auto-fit by width. */
+    columns?: number;
     /** Either bare filenames or objects with captions. Omit to auto-discover. */
     images?: Array<string | { src: string; caption?: string; alt?: string }>;
     /** A single image (often a GIF demo) shown full-width above the page body,
