@@ -2,6 +2,8 @@
 title: "oneoneone"
 date: "2026"
 tags: ["Full Stack"]
+layout: "case-study"
+aspect: "2/1"
 ---
 
 oneoneone is a daily reading site inspired by a section of a talk from Ray Bradbury. His advice to asprigin writers it for a thousand nights, read one short story, one poem, and one essay before bed. He credited that routine with a lot of his own writing and helping him come up with imagery. The site replicates this by picking each of the aforementioned texts from quality writers from open source domains. This allows you, the reader, to focus on reading and soaking in the material rather than having to choose what to read. When I first started this routine, I found myself going through analysis paralysis, wondering if the material I picked was useful enough. However, that is not the point of this routine. Rather, you should act a sponge and soak up any material given to you. Because of this the site is simple without bells and whistles. While developing, I added a lot of extra features, like a randomizer so you can change the material presented to you and an option for users to suggest pieces. These are useful, but I think they distract from the main purpose of habitual reading.

@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import "../styles/globals.css";
 import Nav from "./components/Nav";
 import RandomImages from "./components/RandomImages";
+import SplitHandle from "./components/SplitHandle";
 
 const description =
     "Paul Lin";
@@ -44,6 +45,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <html lang="en">
             <body>
                 <RandomImages />
+                <SplitHandle />
                 <Nav />
                 <main>{children}</main>
             </body>

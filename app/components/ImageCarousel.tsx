@@ -27,6 +27,16 @@ export default function ImageCarousel({
     const [index, setIndex] = useState(0);
     const ratio = parseAspect(aspect);
 
+    // The source of truth for "which slide are we headed to." `index` (state)
+    // only catches up once a scroll actually settles, which lags behind a
+    // smooth-scroll animation still in flight. Stepping off `index` instead
+    // of this ref meant a second click, fired before the first's animation
+    // settled, re-requested the *same* target — index+1 off whatever was
+    // last rendered — so clicking next repeatedly could get stuck bouncing
+    // toward one slide and never reach the last one. Both the click handler
+    // and the scroll listener below keep this updated immediately.
+    const indexRef = useRef(0);
+
     // Slide widths are only whole pixels by coincidence — `clientWidth` rounds,
     // but flexbox keeps the real (fractional) layout. Multiplying a rounded
     // width by the index drifts further from the true slide boundary with every
@@ -42,15 +52,17 @@ export default function ImageCarousel({
             const track = trackRef.current;
             if (!track) return;
             const target = Math.min(
-                Math.max(index + delta, 0),
+                Math.max(indexRef.current + delta, 0),
                 images.length - 1,
             );
+            indexRef.current = target;
+            setIndex(target);
             track.scrollTo({
                 left: slideLeft(track, target),
                 behavior: "smooth",
             });
         },
-        [index, images.length, slideLeft],
+        [images.length, slideLeft],
     );
 
     // Keep the counter in sync with swipes and trackpad scrolling, by finding
@@ -71,18 +83,13 @@ export default function ImageCarousel({
                     closest = i;
                 }
             }
+            indexRef.current = closest;
             setIndex(closest);
         };
 
         track.addEventListener("scroll", onScroll, { passive: true });
         return () => track.removeEventListener("scroll", onScroll);
     }, []);
-
-    // Read the latest index without making the observer below depend on it —
-    // `index` changes on every scroll frame while swiping, and recreating the
-    // observer each time re-triggers the setup-time callback below.
-    const indexRef = useRef(0);
-    indexRef.current = index;
 
     // A resize changes the track width, which leaves scrollLeft pointing between
     // two slides. Snap back onto the current one so the view never sits halfway.
@@ -109,21 +116,29 @@ export default function ImageCarousel({
 
     // Publish the photo's rendered width so the stylesheet can shrink the whole
     // carousel — track, caption and controls — to hug the image instead of
-    // letting them span the wider column beside a portrait photo. The column's
-    // height is fixed by the text next to it, so narrowing the carousel never
-    // feeds back into the image size.
+    // letting them span the wider column beside a portrait photo.
+    //
+    // --frame-width caps the carousel's own width, and the image is in turn
+    // capped to the carousel's width (max-width: 100%) — so measuring the
+    // image directly is circular: once the window narrows and the cap kicks
+    // in, the image can never report a size bigger than the stale cap, even
+    // after the window widens back out and there's room to grow. Observing
+    // the unconstrained parent instead, and clearing the cap before each
+    // measurement, breaks that loop and lets the frame grow back.
     useEffect(() => {
         const img = imgRef.current;
         const root = rootRef.current;
-        if (!img || !root) return;
+        const parent = root?.parentElement;
+        if (!img || !root || !parent) return;
 
         const update = () => {
+            root.style.removeProperty("--frame-width");
             root.style.setProperty("--frame-width", `${img.offsetWidth}px`);
         };
         update();
 
         const observer = new ResizeObserver(update);
-        observer.observe(img);
+        observer.observe(parent);
         return () => observer.disconnect();
     }, []);
 

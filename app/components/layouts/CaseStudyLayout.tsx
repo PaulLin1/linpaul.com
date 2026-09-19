@@ -3,7 +3,6 @@ import Hero from "../Hero";
 import ImageCarousel from "../ImageCarousel";
 import Markdown from "../Markdown";
 import Section from "../Section";
-import { entryHasImages } from "@/lib/content";
 import type { LayoutProps } from "./index";
 
 /** Text down the left, media down the right: an optional hero (a GIF demo, say)
@@ -28,9 +27,14 @@ export default function CaseStudyLayout({ entry }: LayoutProps) {
             <ContentHeader entry={entry} />
             <div className={splitClass}>
                 <Section>
-                    <Markdown wide={!entryHasImages(entry)}>
-                        {entry.content}
-                    </Markdown>
+                    {/* Always wide: with media, the grid column (split--media's
+                        even 1fr) already disciplines the width, so the fixed
+                        reading-measure cap on top of that just left blank
+                        space beside the text as the page grew while the media
+                        column kept filling its own column — text should fill
+                        its column exactly like the media does. Without media
+                        it's the only column, so wide already applied. */}
+                    <Markdown wide>{entry.content}</Markdown>
                 </Section>
 
                 {hasMedia && (

@@ -1,7 +1,6 @@
 import ContentHeader from "../ContentHeader";
 import Markdown from "../Markdown";
 import Section from "../Section";
-import { entryHasImages } from "@/lib/content";
 import type { LayoutProps } from "./index";
 
 /** Text left, a stack of images in a rail to the right. The default for portfolio
@@ -16,9 +15,14 @@ export default function SplitLayout({ entry }: LayoutProps) {
             <ContentHeader entry={entry} />
             <div className={`split${hasImages ? " split--rail" : ""}`}>
                 <Section>
-                    <Markdown wide={!entryHasImages(entry)}>
-                        {entry.content}
-                    </Markdown>
+                    {/* Always wide: with images, the grid column (split--rail's
+                        2fr) already disciplines the width, so the fixed
+                        reading-measure cap on top of that just left blank
+                        space beside the text as the page grew while the image
+                        rail kept filling its own column — text should fill
+                        its column exactly like the rail does. Without images
+                        it's the only column, so wide already applied. */}
+                    <Markdown wide>{entry.content}</Markdown>
                 </Section>
 
                 {hasImages && (

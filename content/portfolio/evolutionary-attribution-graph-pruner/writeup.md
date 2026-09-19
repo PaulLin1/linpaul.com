@@ -1,7 +1,7 @@
 ---
-title: "Attribution Graph Pruner"
+title: "Evolutionary Attribution Graph Pruner"
 date: "2025"
-tags: ["Evolutionary Computing", "AI"]
+tags: ["Research", "AI"]
 ---
 
 Using Evolutionary Graph Pruning to Improve Transcoder-Based Interpretability of LLMs is my final project for the graduate level course CSE 848: Computational Evolution that I worked on with my friend from AI Club, Uzair Mohammed. Around the beginning of that semester, I became interested in AI interpretability. and, luckily, Uzair was already experienced with the topic, with multiple ongoing research projects. When the teacher announced that the final project would be an open ended project related to computational evolution, I knew that I had to twist it in some way to work on an interpretability problem with Uzair.
