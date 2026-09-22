@@ -34,5 +34,5 @@ A scraper/ingest pipeline pulls channels, blocks, and connections from the Are.n
 
 Again, I'm restricting myself to the initial Are.na data I pulled, for practicality, but plan to keep adding new ways of representing that same set of media.
 
-You can try it at [https://micro-silk-pi.vercel.app/](https://micro-silk-pi.vercel.app/), or see
+You can try it at [https://micro-silk.fly.dev](https://micro-silk.fly.dev), or see
 the code [on GitHub](https://github.com/PaulLin1/micro-silk).
