@@ -738,12 +738,13 @@ a.tile:hover {
     .media-col:not(.media-col--stacked) > .carousel {
         height: 100%;
         min-height: 0;
-        /* Shrink to the photo's rendered width (published by the component) and
-           center, so track, caption and controls line up with the image edges
-           instead of spanning the wider column. */
-        width: var(--frame-width, 100%);
-        max-width: 100%;
-        margin-inline: auto;
+        /* Always the full column width. This used to shrink to hug a narrow
+           portrait photo's own rendered width (measured in JS via a
+           ResizeObserver), so the caption/controls didn't span wider than the
+           picture — but that measurement read the very box it was capping,
+           which could get stuck small after the column shrank and grew back.
+           A full-width, always-as-big-as-possible frame can't get stuck. */
+        width: 100%;
     }
 
     .media-col:not(.media-col--stacked) .carousel__track {

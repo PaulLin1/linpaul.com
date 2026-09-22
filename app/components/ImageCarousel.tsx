@@ -23,7 +23,6 @@ export default function ImageCarousel({
 }) {
     const rootRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
-    const imgRef = useRef<HTMLImageElement>(null);
     const [index, setIndex] = useState(0);
     const ratio = parseAspect(aspect);
 
@@ -114,34 +113,6 @@ export default function ImageCarousel({
         return () => observer.disconnect();
     }, [slideLeft]);
 
-    // Publish the photo's rendered width so the stylesheet can shrink the whole
-    // carousel — track, caption and controls — to hug the image instead of
-    // letting them span the wider column beside a portrait photo.
-    //
-    // --frame-width caps the carousel's own width, and the image is in turn
-    // capped to the carousel's width (max-width: 100%) — so measuring the
-    // image directly is circular: once the window narrows and the cap kicks
-    // in, the image can never report a size bigger than the stale cap, even
-    // after the window widens back out and there's room to grow. Observing
-    // the unconstrained parent instead, and clearing the cap before each
-    // measurement, breaks that loop and lets the frame grow back.
-    useEffect(() => {
-        const img = imgRef.current;
-        const root = rootRef.current;
-        const parent = root?.parentElement;
-        if (!img || !root || !parent) return;
-
-        const update = () => {
-            root.style.removeProperty("--frame-width");
-            root.style.setProperty("--frame-width", `${img.offsetWidth}px`);
-        };
-        update();
-
-        const observer = new ResizeObserver(update);
-        observer.observe(parent);
-        return () => observer.disconnect();
-    }, []);
-
     if (images.length === 0) return null;
 
     return (
@@ -157,7 +128,6 @@ export default function ImageCarousel({
                 {images.map((image, i) => (
                     <figure key={image.src} className="carousel__slide">
                         <img
-                            ref={i === 0 ? imgRef : undefined}
                             src={image.src}
                             alt={image.alt ?? image.caption ?? `${title} ${i + 1}`}
                             loading={i === 0 ? "eager" : "lazy"}
