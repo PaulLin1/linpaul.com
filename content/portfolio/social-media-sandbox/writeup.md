@@ -8,7 +8,7 @@ aspect: "9/5"
 
 ## Starting point
 
-I'd spent a lot of time browsing an app called Silk and wanted to understand how it worked by rebuilding it. It's a platform where people collect and organize images, links, and text into curated channels like mood boards. To gather mock data, I pulled from the Are.na API to recreate Silk's core pieces: the feed, magic search, and channels, before the project drifted into its own thing, a sandbox for experimenting with different ways of representing media for social media.
+I've spent a lot of time browsing an app called Silk and wanted to understand how it worked by rebuilding it. It's a platform where people collect and organize images, links, and text into curated channels like mood boards. To gather mock data, I pulled from the Are.na API to recreate Silk's core pieces: the feed, magic search, and channels, before the project drifted into its own thing, a sandbox for experimenting with different ways of representing media for social media.
 
 ## Feed
 

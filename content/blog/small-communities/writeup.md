@@ -1,12 +1,12 @@
 ---
-title: "Remembering"
+title: "Smal; Communities"
 date: "09-17-2026"
 tags: ["Misc"]
 ---
 
 Before my fingers became molded to hold flat 13s, before my triceps stayed taut after a workout, before I grew immature enough to close my eyes to the things I love and listen to the things I love, I had hobbies.
 
-Yo-yoing, cardistry, kendama. They were my version of skateboarding—things I could pick up and obsess over on my own. The draw wasn't just practicing the hobby; it was feeling like I was part of a community with its own cool aesthetic. If I were truly smart, I would've gone straight to the root: skateboarding. And perhaps the root of that: music videos. I loved the allure of it all, but could only experience watered-down imitations of that feeling through the smaller communities these hobbies produced.
+Yo-yoing, cardistry, kendama. They were my version of skateboarding—things I could pick up and obsess over on my own. The draw wasn't just practicing the hobby; it was feeling like I was part of a community with its own cool aesthetic. Before the word niche became overused, I was in my own niches, each with their own microcelebrities and brands struggling to stay profitable. If I were truly smart, I would've gone straight to the root: skateboarding. And perhaps the root of that: music videos. I loved the allure of it all, but could only experience watered-down imitations of that feeling through the smaller communities these hobbies produced.
 
 But I was lucky enough to experience them in real time. I got to watch Cardistry Con grow and imagine what it might become. I got to watch A-rt, a company branched off CLYW, and imagine a world where it could support the lives of its two founders. I saw the beginnings of these little worlds and imagined futures for them that never came. Maybe that's what makes them so nostalgic to me. It's noot just that they disappeared, but that I got to see what they might have become.
 
