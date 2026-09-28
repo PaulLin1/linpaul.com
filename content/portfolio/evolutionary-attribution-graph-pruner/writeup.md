@@ -4,8 +4,20 @@ date: "2025"
 tags: ["Research", "AI"]
 ---
 
-Using Evolutionary Graph Pruning to Improve Transcoder-Based Interpretability of LLMs is my final project for the graduate level course CSE 848: Computational Evolution that I worked on with my friend from AI Club, Uzair Mohammed. Around the beginning of that semester, I became interested in AI interpretability. Luckily, Uzair was already experienced with the topic, with multiple ongoing research projects. So when the professors announced that the final project would be an open-ended project related to computational evolution, I knew that I had to twist it in some way to work on an interpretability problem with Uzair.
+An evolutionary algorithm for pruning attribution graphs in LLMs, built as the final project for CSE 848: Computational Evolution, a graduate course at Michigan State University. I worked on it with Uzair Mohammed, a friend from AI Club.
 
-What resulted was an evolutionary algorithm used to prune attribution graphs for LLM's. Attribution graph's are currently one of the clearest ways to explain the inputs and outputs of an AI model They allow users to see which nodes and layers had the biggest influence on the results. To get the graph, the entire model is loaded and greedily pruned to show where that influence occured. Our algorithm takes the graph and uses a multi-objective evolutionary algorithm to simplify this process. The result is a cleaner attribution graph that makes distinguishing node importance easier.
+## Background
 
-To read our full report, click [here](https://drive.google.com/file/d/1lvKREHI47p0W_Fzw7p9lUAw8tECPdcic/view).
+Around the beginning of that semester, I became interested in AI interpretability. Uzair was already experienced with the topic and had multiple ongoing research projects. When the professors announced that the final project would be open-ended and related to computational evolution, I wanted to find a way to apply it to an interpretability problem so we could work on it together.
+
+## Process
+
+Attribution graphs are currently one of the clearest ways to explain the relationship between a model's inputs and outputs. They show which nodes and layers had the biggest influence on a result. To produce one, the entire model is loaded and the graph is greedily pruned to show where that influence occurred.
+
+Our algorithm takes that graph and uses a multi-objective evolutionary algorithm to simplify the pruning process.
+
+## Outcome
+
+The result is a cleaner attribution graph that makes it easier to distinguish which nodes matter.
+
+Full report on [Google Drive](https://drive.google.com/file/d/1lvKREHI47p0W_Fzw7p9lUAw8tECPdcic/view).

@@ -6,12 +6,22 @@ layout: "case-study"
 aspect: "2/1"
 ---
 
-oneoneone is a daily reading site inspired by a section of a talk from Ray Bradbury. His advice to aspiring writers was to read one short story, one poem, and one essay before bed for 1000 nights. He credited that routine for improving his own writing and helping him come up with vivid imagery. The site replicates this by picking each of the aforementioned texts from quality writers from open source domains. This allows you, the reader, to focus on reading and soaking in the material rather than having to choose what to read. When I first started this routine, I found myself going through analysis paralysis, wondering if the material I picked was useful enough. However, that is not the point of this routine. Rather, you should be open to any pieces from any writers. Because of this the site is simple without bells and whistles. While developing, I added a lot of extra features, like a randomizer so you can change the material presented to you and an option for users to suggest pieces. These are useful, but I think they distract from the main purpose of habitual reading.
+A daily reading site that serves one short story, one poem, and one essay each day, drawn from quality writers in the public domain.
 
-Another quirk is that every person recieves the same material. At first, I was scared that this would lead to monoculture of people consuming the same material every day. But realistically, I think if a community builds around this site, it would be small and serving the same material can lead to good discussion.
+## Background
 
-Under the hood it's a Next.js app on Neon Postgres, with a scheduled pipeline that finds new
-candidate works, checks their rights status, and reviews them. Additionally, a portrait of the writer and a short description of the work is generated.
+The idea comes from a talk by Ray Bradbury. His advice to aspiring writers was to read one short story, one poem, and one essay before bed for 1,000 nights. He credited that routine with improving his own writing and helping him come up with vivid imagery.
 
-You can try it at [readoneoneone.com](https://readoneoneone.com), or see
-the code [on GitHub](https://github.com/PaulLin1/oneoneone).
+When I first started the routine myself, I found myself stuck in analysis paralysis, wondering whether the material I picked was useful enough. But that isn't the point. The routine works best when you're open to any piece from any writer. The site takes the choice away so you can focus on reading and soaking in the material.
+
+## Decisions
+
+Because of that, the site is deliberately simple. While developing it, I added extra features, like a randomizer to swap out the day's material and a way for users to suggest pieces. They're useful, but they distract from the main purpose of habitual reading.
+
+Every reader also receives the same material, like a daily puzzle (Wordle, NYT Games, etc.). At first, I worried this would lead to a monoculture of people consuming the same thing every day. Realistically, any community that forms around the site would be small, and shared material gives people something to discuss.
+
+## Under the hood
+
+It's a Next.js app on Neon Postgres, with a scheduled pipeline that finds candidate works, checks their rights status, and reviews them. A portrait of the writer and a short description of each work are also generated.
+
+Live at [readoneoneone.com](https://readoneoneone.com). Code on [GitHub](https://github.com/PaulLin1/oneoneone).
