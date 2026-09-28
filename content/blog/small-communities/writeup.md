@@ -1,5 +1,5 @@
 ---
-title: "Smal; Communities"
+title: "Small Communities"
 date: "09-17-2026"
 tags: ["Misc"]
 ---
