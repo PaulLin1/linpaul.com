@@ -36,6 +36,12 @@ export interface Frontmatter {
     [key: string]: unknown;
 }
 
+/** Year-only display form of a frontmatter date ("09-14-2025" → "2025").
+ *  Full dates stay in frontmatter so entries still sort by day. */
+export function displayYear(date?: string): string | undefined {
+    return date?.match(/\d{4}/)?.[0] ?? date;
+}
+
 export interface Entry {
     collection: string;
     slug: string;

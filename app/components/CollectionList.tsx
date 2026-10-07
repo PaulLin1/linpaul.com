@@ -2,7 +2,7 @@ import Line from "./Line";
 import CenteredLayout from "./MainLayout";
 import Scroll from "./Scroll";
 import Section from "./Section";
-import { getCollection } from "@/lib/content";
+import { displayYear, getCollection } from "@/lib/content";
 
 /** Index page for a collection: one line per entry, newest first. */
 export default function CollectionList({
@@ -32,7 +32,7 @@ export default function CollectionList({
                                         {tags.length > 0
                                             ? tags.join(", ")
                                             : "No tags"}{" "}
-                                        | {data.date ?? "Unknown"}
+                                        | {displayYear(data.date) ?? "Unknown"}
                                     </span>
                                 </span>
                             </Line>

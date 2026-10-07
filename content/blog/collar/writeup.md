@@ -1,7 +1,7 @@
 ---
 title: "Collar Case Study"
 date: "07-09-2026"
-tags: ["Fashion"]
+tags: ["Fashion", "Photograph"]
 layout: "case-study"
 aspect: "3/4"
 
