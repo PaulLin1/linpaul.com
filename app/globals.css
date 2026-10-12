@@ -1,0 +1,54 @@
+/* No preflight: browser defaults (lists, headings, blockquotes) are part of the look. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+    --breakpoint-lg: 60rem;
+    --font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    --color-soft: #6f6f6f;
+    --color-link: #25408f;
+    --color-rule: rgba(0, 0, 0, 0.14);
+    /* Fluid type, ~360px phone to ~1440px desktop. */
+    --text-sm: clamp(0.78rem, 0.74rem + 0.18vw, 0.88rem);
+    --text-base: clamp(0.94rem, 0.9rem + 0.2vw, 1.05rem);
+    --text-lg: clamp(1.08rem, 0.98rem + 0.45vw, 1.35rem);
+    --text-2xl: clamp(1.4rem, 1.12rem + 1.2vw, 2.1rem);
+    --animate-fade-in: fade-in 1.2s ease-in-out backwards;
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+    }
+}
+
+:root {
+    --pad: clamp(1rem, 4vw, 2.5rem);
+    --gap: clamp(1rem, 2vw, 1.75rem);
+    /* Percent of the width given to content; SplitHandle drags it. */
+    --split: 60;
+    --split-width: calc(var(--split) * 1%);
+    /* Fade each side out before it gets narrow enough to crop. */
+    --content-fade: clamp(0, calc((var(--split) - 10) / 15), 1);
+    --image-fade: clamp(0, calc((90 - var(--split)) / 15), 1);
+}
+
+* {
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+
+/* No bold, anywhere. */
+:is(h1, h2, h3, h4, h5, h6, th, strong, b) {
+    font-weight: inherit;
+}
+
+a {
+    color: var(--color-link);
+}
+
+:focus-visible {
+    outline: 2px solid black;
+    outline-offset: 2px;
+}

@@ -1,60 +1,25 @@
-import Line from "../components/Line";
-import CenteredLayout from "../components/MainLayout";
-import Scroll from "../components/Scroll";
-import Section from "../components/Section";
+import { meta, row, scroll, title } from "@/lib/styles";
 
 export const metadata = { title: "Links" };
 
-interface LinkItem {
-    title: string;
-    href: string;
-    description?: string;
-}
-
-const links: LinkItem[] = [
-    {
-        title: "GitHub",
-        href: "https://github.com/PaulLin1",
-        description: "github.com/PaulLin1",
-    },
-    {
-        title: "LinkedIn",
-        href: "https://www.linkedin.com/in/plin/",
-        description: "linkedin.com/in/plin",
-    },
-    {
-        title: "Email",
-        href: "mailto:linp40182@gmail.com",
-        description: "linp40182@gmail.com",
-    },
+const links = [
+    { title: "GitHub", href: "https://github.com/PaulLin1", label: "github.com/PaulLin1" },
+    { title: "LinkedIn", href: "https://www.linkedin.com/in/plin/", label: "linkedin.com/in/plin" },
+    { title: "Email", href: "mailto:linp40182@gmail.com", label: "linp40182@gmail.com" },
 ];
 
 export default function LinksPage() {
     return (
-        <CenteredLayout>
-            <Line as="h1">Links</Line>
-
-            <Scroll>
-                <Section>
-                    {links.map((link) => (
-                        <Line
-                            key={link.href}
-                            as="a"
-                            href={link.href}
-                            block
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <span className="row">
-                                <span>{link.title}</span>
-                                <span className="row__meta">
-                                    {link.description}
-                                </span>
-                            </span>
-                        </Line>
-                    ))}
-                </Section>
-            </Scroll>
-        </CenteredLayout>
+        <>
+            <h1 className={title}>Links</h1>
+            <div className={`${scroll} gap-2`}>
+                {links.map((link) => (
+                    <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className={row}>
+                        <span>{link.title}</span>
+                        <span className={meta}>{link.label}</span>
+                    </a>
+                ))}
+            </div>
+        </>
     );
 }

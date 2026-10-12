@@ -1,7 +1,7 @@
 ---
 title: "Coffee Equipment"
 date: "2026"
-tags: ["Misc", "Photograph"]
+tags: ["Misc", "Photography"]
 layout: "case-study"
 aspect: "3/4"
 
