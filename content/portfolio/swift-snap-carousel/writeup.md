@@ -3,6 +3,8 @@ title: "SwiftSnapCarousel"
 date: "2026"
 tags: ["Design", "App"]
 images:
+  - src: "artwork-1.gif"
+    caption: "GIF Demo"
   - src: "artwork-list.png"
     caption: "1. A scrolling list"
   - src: "artwork-flip.png"
