@@ -2,6 +2,10 @@
 title: "Evolutionary Attribution Graph Pruner"
 date: "2025"
 tags: ["Research", "AI"]
+languages: ["Python", "PyTorch"]
+images:
+  - src: "image.png"
+    caption: "Pruned attribution graph"
 ---
 
 An evolutionary algorithm for pruning attribution graphs in LLMs, built as the final project for CSE 848: Computational Evolution, a graduate course at Michigan State University. I worked on it with Uzair Mohammed, a friend from AI Club.

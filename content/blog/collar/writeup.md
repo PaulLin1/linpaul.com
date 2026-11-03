@@ -26,7 +26,7 @@ images:
 
 The bust is one of the oldest forms of portrait sculpture. It includes the head, neck, shoulders, and sometimes part of the chest. Why?
 
-Well, including head is obvious. It has the face, the features, the expression. It wouldn't be fair to call one part of the body more important than another, but if the boyd has a center of gravity, it is the head.
+Well, including the head is obvious. It has the face, the features, the expression. It wouldn't be fair to call one part of the body more important than another, but if the body has a center of gravity, it is the head.
 
 The rest of the bust exists to support it. The neck lifts the head from the body. The shoulders give it breadth and direction. Together, they show how this small, expressive part of the body emerges from everything beneath it. A head without a neck feels detached; a bust reminds you that the face belongs to a person.
 

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import ImageCarousel, {
   type CarouselImage,
 } from "@/app/components/image-carousel";
+import { displayDate } from "@/app/components/folder-list";
 
 interface BlogProp {
   directory: string;
@@ -37,10 +38,19 @@ export default async function Writeup({ directory, slug }: BlogProp) {
   }));
 
   return (
-    <div className="flex h-[calc(100dvh-6rem)] min-h-0 flex-row items-stretch gap-8 overflow-hidden">
-      <article className="prose prose-neutral min-h-0 min-w-0 flex-1 max-w-none overflow-y-auto text-black font-['Helvetica',Arial,sans-serif] prose-headings:text-black prose-p:text-black prose-strong:text-black prose-a:text-black [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex min-h-0 flex-1 flex-row items-stretch gap-8 overflow-hidden">
+      <article className="prose prose-neutral min-h-0 min-w-0 flex-1 max-w-none overflow-y-auto pb-10 text-black font-['Helvetica',Arial,sans-serif] prose-headings:text-black prose-p:text-black prose-strong:text-black prose-a:text-black [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <h1>{data.title}</h1>
-        <p>{String(data.date ?? "")}</p>
+        <div className="mb-6 gap-1 flex flex-col text-sm leading-[1.2]">
+          {data.tags?.length > 0 && <span>tags: {data.tags.join(", ")}</span>}
+
+          {data.date && <span>date: {displayDate(String(data.date))}</span>}
+
+          {data.languages?.length > 0 && (
+            <span>languages: {data.languages.join(", ")}</span>
+          )}
+        </div>
+
         <ReactMarkdown>{body}</ReactMarkdown>
       </article>
 

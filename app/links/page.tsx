@@ -21,7 +21,7 @@ export default function Links() {
     <>
       <h1 className="mb-5 font-sans text-4xl text-black">Links</h1>
 
-      <ul className="flex list-none flex-col gap-1 pl-0">
+      <ul className="flex min-h-0 flex-1 list-none flex-col gap-1 overflow-y-auto pl-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {links.map((link) => (
           <li key={link.title}>
             <a

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -38,9 +37,7 @@ export default function ImageRenderer({ images }: { images: string[] }) {
     <div className="relative h-[800px] w-full overflow-hidden">
       {positions.map((item, i) => {
         const total =
-          item.fadeInDuration +
-          item.visibleDuration +
-          item.fadeOutDuration;
+          item.fadeInDuration + item.visibleDuration + item.fadeOutDuration;
 
         return (
           <motion.div
