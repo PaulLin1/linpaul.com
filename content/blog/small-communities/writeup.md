@@ -1,12 +1,11 @@
 ---
-title: "Small Communities"
-date: "09-17-2026"
-tags: ["Random"]
-
+title: Small Communities
+date: 09-17-2026
+tags:
+  - Random
 images:
-  - src: "image.png"
+  - src: small-communities-1.png
 ---
-
 Before my fingers became molded to hold flat 13s, before my triceps stayed taut after a workout, before I grew immature enough to close my eyes to the things I love and listen to the things I love, I had hobbies.
 
 Yo-yoing, cardistry, kendama. They were my hobbies I could pick up and obsess over on my own. The draw wasn't just practicing the hobby; it was feeling like I was part of a community with its own cool aesthetic. Before the word 'niche' became overused, I was in my own niches, each with their own microcelebrities and brands struggling to stay profitable. If I were truly smart, I would've gone straight to the root: skateboarding. And perhaps the root of that: music videos. I loved the allure of it all, but could only experience watered-down imitations of that feeling through the smaller communities these hobbies produced.

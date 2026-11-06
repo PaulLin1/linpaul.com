@@ -1,22 +1,23 @@
 ---
-title: "SwiftSnapCarousel"
-date: "2026"
-tags: ["Design", "App"]
+title: SwiftSnapCarousel
+date: '2026'
+tags:
+  - Design
+  - App
+languages:
+  - Swift
 images:
-  - src: "artwork-1.gif"
-    caption: "GIF Demo"
-  - src: "artwork-list.png"
-    caption: "1. A scrolling list"
-  - src: "artwork-flip.png"
-    caption: "2. Flip to reveal"
-  - src: "artwork-pill.png"
-    caption: "3. The expanding pill"
-  - src: "artwork-final.png"
-    caption: "4. Center becomes selection"
-languages: ["Swift"]
-
+  - src: swift-snap-carousel-1.gif
+    caption: GIF Demo
+  - src: swift-snap-carousel-2.png
+    caption: 1. A scrolling list
+  - src: swift-snap-carousel-3.png
+    caption: 2. Flip to reveal
+  - src: swift-snap-carousel-4.png
+    caption: 3. The expanding pill
+  - src: swift-snap-carousel-5.png
+    caption: 4. Center becomes selection
 ---
-
 A snapping carousel component for SwiftUI.
 
 ## Background

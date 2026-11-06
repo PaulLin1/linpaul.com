@@ -1,20 +1,22 @@
 ---
-title: "Gym Timer"
-date: "2026"
-tags: ["App, Design"]
+title: Gym Timer
+date: '2026'
+tags:
+  - App
+  - Design
+languages:
+  - React Native
+  - TypeScript
 images:
-  - src: "artwork-1.png"
-    caption: "Bauhaus/De Stijl"
-  - src: "artwork-4.png"
-    caption: "campaign ltd. Reference"
-  - src: "artwork-2.png"
-    caption: "TITLE Classic XL Digital Gym Timer"
-  - src: "artwork-3.png"
-    caption: "TITLE Classic XL Digital Gym Timer Reference"
-languages: ["React Native", "TypeScript"]
-
+  - src: gym-timer-1.png
+    caption: Bauhaus/De Stijl
+  - src: gym-timer-2.png
+    caption: campaign ltd. Reference
+  - src: gym-timer-3.png
+    caption: TITLE Classic XL Digital Gym Timer
+  - src: gym-timer-4.png
+    caption: TITLE Classic XL Digital Gym Timer Reference
 ---
-
 A interval timer app based off the TITLE Classic XL Digital Gym Timer and a Bauhaus/De Stijl design by campaign ltd.. 
 
 ## Background

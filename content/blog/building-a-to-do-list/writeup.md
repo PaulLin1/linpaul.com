@@ -1,9 +1,9 @@
 ---
-title: "Building a To Do List"
-date: "2026"
-tags: ["Software"]
+title: Building a To Do List
+date: '2026'
+tags:
+  - Software
 ---
-
 I started to get obsessed over my to -do in the summer of 2026. Looking back at it, rightfully so. I was operating with a kitchen-sink monolith of various notes in Apple Notes and tasks, birthdays, and random stuff in Google Suite applications. This hectic approach led me to search for a way to consildate my to do and productivity applications.
 
 Solution 1 was picking a side: either Apple or Google. As a user of both, both made sense. I had Apple devices that allowed me to sync information over iCloud, but I also had a Google account that did the same with Google Drive. Apple had robust task and calendar features; Google did too. Apple had Apple Notes, Google had ... Google Keep? I am not using that. Okay, so Apple it is.
@@ -24,4 +24,4 @@ So I did the big port again, and it fit perfectly. It was not only a good produc
 
 The first plugin I made was Orbit, a smart tool list to balance my 10+ hobbies. Orbit has an algorithm similar to a queue, where the thing I did the furthest back is pushed to the top so I don't have long gaps. I didn't have to rebuild a database, Obsidian handled that with markdown files with properties. I didn't have to build a new UI framework, I could enherit Obsidian's ItemView. This conveniance gives me limitless possibilities of what my productuvity tool to be.
 
-After a month of using Obsidian full time, I feel like I am finally content. Productivity is made easy, but I also have the excitement of new features and toys within Obsidian. If anything becomes too abstract, I can scale back within the same application. I realized that even if I wanted somplicitiy and coherency within my productivity suite, I could benefit from a more complex app by growing in places I want, and pruning where I dont. 
+After a month of using Obsidian full time, I feel like I am finally content. Productivity is made easy, but I also have the excitement of new features and toys within Obsidian. If anything becomes too abstract, I can scale back within the same application. I realized that even if I wanted somplicitiy and coherency within my productivity suite, I could benefit from a more complex app by growing in places I want, and pruning where I dont.

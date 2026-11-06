@@ -1,0 +1,21 @@
+---
+title: Time Crisis
+date: '2026'
+tags:
+  - Music
+---
+*I distinctly remember the first time I listened to Time Crisis. It was early in the summer of 2024, and it was the first time I walked through my hometown's downtown as a 20-year-old. I remember going into a coffee shop I had passed hundreds of times before. I remember trying to buy a coney dog at my family's old go-to spot, only to discover when I got there that it only accepts cash. I remember going to study at the local library where I used to volunteer,  alone looking past the garden toward the stream. It felt like I was breaking through nostalgia and finding a new view of what once felt so simple. And the whole time, I was listening to Time Crisis.*
+
+Unlike traditional radio or streaming service recommendations, the music played on Time Crisis, a self-described "internet radio show," feels random. That's not to say there's no reason a song gets played, but that a song can be played for any reason. The Top 5 segment covers the hits of the day, interviews with artists allow for deep dives into their catalogs, and the hosts sometimes bring in their own selections. Music is also used to complement the hosts' conversations, like playing "Gatorade" by Charly Bliss after a discussion about the beverage, or "Hot Cheetos" by Clairo after a discussion about Richard Montañez, the supposed creator of Flamin' Hot Cheetos. If the show were hosted by casual or even moderate music fans, the concept of this biweekly show would fall flat. How can anyone talk about every genre of music while staying both knowledgeable and entertaining?
+
+This is where Time Crisis shines. The show is hosted by four guys with varying proximity to the music scene. Ezra Koenig, the frontman of Vampire Weekend, lived much of the music they talk about. He was at the forefront of the 2000s indie wave, a time many people wish they could have been a part of. When Belle and Sebastian came up in one episode, he recounted how he and other bands wanted to set themselves apart from the twee sound Belle and Sebastian had become known for. These little first hand accounts are jewels to someone like me, who is especially interested in scenes, and Ezra presents it in a non snobby way.
+
+The other main co-host is Jake Longstreth. Older than Ezra, he played in bands in college in the Pacific Northwest during the '90s. But his firsthand experience with music isn't what makes him stand out. It's his extremely particular taste. His taste is so particular that a running bit on the show is asking Jake what he thinks of a band or musician, expecting either a harsh no or, sometimes, a surprising yes. At first, I disliked how polarized his taste was. But I've come to see it as a nice balance to Ezra's "I can find something to like about anything" attitude. He is able to talk about what he loves so deeply, and that is something I want to do as well.
+
+A host with a more tangential relationship to music is Nick, who worked in Atlanta with Vice and Adult Swim. His time there ingrained him deeply in the city's hip-hop scene, yet he's also part of Jake's classic rock group chat. Interestingly, even though I associate Silver Jews most with Jake, it was Nick who had the closer connection to the band, having spent a week interviewing its frontman for an article.
+
+The range of the hosts is vast and unique, which lets them offer insights I wouldn't get anywhere else. For example, hearing about 2hollis led them to a deep dive into Turtle, the band of 2hollis's dad. Or the Online Ceramics guys, before the company got big, reaching out to Jake through his Grateful Dead cover band. I could list all the conversations they've had that stuck with me.
+
+While writing this, I read a transcript of an episode where they traced the lineage of Lana Del Rey's voice back through Feist, to Cat Power, to Billie Holiday. It isn't really the music recommendations I appreciate most, but the way the hosts weave such deep music conversations into their regular conversations. 
+
+This is what inspired me to move closer to the entertainment world. I want to be in my 40s with views as unique as theirs, able to talk with others and reminisce about a time that shaped who I became and possibly how I shaped that time. Though I am writing this now, this feeling is not new to me. I first felt it on a early summer day in 2024.

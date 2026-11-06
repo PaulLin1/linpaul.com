@@ -1,9 +1,9 @@
 ---
-title: "Apple"
-date: "2026"
-tags: ["Software Developer (Senior Capstone)"]
+title: Apple
+date: '2026'
+tags:
+  - Software Developer (Senior Capstone)
 ---
-
 For my computer science senior capstone project sponsored by Apple, my team made an app in Swift to help people set up Mac clusters for machine learning. A cluster is a group of computers (for this use case only Macs) that combine their computing power to do a task like AI training. Before the creation of our project, the process of setting up a cluster was tedious, needing 2 separate command line scripts that had little debugging information if something went wrong. Our project aimed to provide a polished UI, following Apple's aesthetic, that also provided information to help users.
 
 I worked on the UI of the app. With help from our group's company contact, Cori, I developed a UI that stayed true to the look of other Apple apps. Some parts were easy, like having SwiftUI default to Apple's color and sizing schemas. But some parts were hard, like providing a completely new UI for device discovery. Previous Apple products, like AirDrop and AirPod discovery, worked in this domain, but they were no help in making a UI that had to be detailed and compatible with multi-device discovery. After a month of prototyping, I created the SnapCarousel component. More detail on it can be found under my portfolio page.

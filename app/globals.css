@@ -9,11 +9,15 @@
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
+    font-weight: 300;
 }
 
-:is(h1, h2, h3, h4, h5, h6, strong, b, th) {
-    font-weight: 400;
+:is(h1, h2, h3, h4, h5, h6, th) {
+    font-weight: 300;
+}
+
+:is(strong, b) {
+    font-weight: 700;
 }
 html,
 body {

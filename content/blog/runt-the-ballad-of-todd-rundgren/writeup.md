@@ -1,9 +1,11 @@
 ---
-title: "Runt. The Ballad of Todd Rundgren"
-date: "09-15-2025"
-tags: ["Music"]
+title: Runt. The Ballad of Todd Rundgren
+date: 09-15-2025
+tags:
+  - Music
+images:
+  - src: runt-the-ballad-of-todd-rundgren-1.png
 ---
-
 Recently, I've been listening to Runt: The Ballad of Todd Rundgren after discovering his music through an interview where he discussed his work with Laura Nyro (I first became acquainted with Nyro’s work through an interview with Geordie Greep). The album features exceptional ballad highlights like “Wailing Wall”, but also rock numbers like “Bleeding.” For me, Rundgren is reminiscent of Meat Loaf but with a sweeter voice and a rounder, more polished sound. The stereo work on this album is exceptional. It’s hard to grasp that only four years separate it from the harsh left-right panning of Revolver.
 
 Speaking of The Beatles, I often view their career as the start of a new era, almost like the cultural equivalent of the life of Jesus: their inventiveness set a benchmark that makes it hard not to trace their influence, even if sometimes people misattribute certain sounds to them. Rundgren’s career really took off in the wake of the Beatles’ disbandment. The opening track, “Long Flowing Robe,” is reminiscent of “For No One” from Revolver. Where Paul McCartney keeps it intimate on the clavichord, Rundgren expands into a grand chorus with layered harmonies.

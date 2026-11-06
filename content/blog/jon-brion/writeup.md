@@ -1,12 +1,11 @@
 ---
-title: "Jon Brion"
-date: "09-20-2025"
-tags: ["Music"]
-
+title: Jon Brion
+date: 09-20-2025
+tags:
+  - Music
 images:
-  - src: "image.png"
+  - src: jon-brion-1.png
 ---
-
 Most people are never formally introduced to Jon Brion's music. Despite scoring award-winning movies that boast strong cult followings and producing for charting artists across four decades, his name is often only found by those who wait for the credits or read the back of the CD cover. Luckily, I am one of those people.
 
 The hardest part about getting into Brion's music is that he seems to always work with visionaries. This makes it hard for one to understand what parts of a work are influenced by Brion's artistry and what parts are from the titled artist. Take the dreamlike qualities of Charlie Kaufman movies. The soundtrack for Eternal Sunshine of the Spotless Mind sounds like it should, as though Kaufman transposed his mind into Brion and used Brion's musical talents to compose the soundtrack. A similar pattern is seen with Brion's influence on Elliott Smith. Prior to the album Figure 8, Elliott Smith carved out a distinct sound through a string of self-produced albums. Each album built upon the previous, whether through cleaner guitar and vocal recordings or the addition of new instruments like on XO. The newer baroque sound of Figure 8 can be seen as a direct continuation of Smith's progression as an artist past XO, thus making it hard to see Brion's contributions as a friend of Elliott. But that just shows his genius as an artist. Hearing him talk about the creation of the Punch Drunk Love soundtrack, you see how he is able to take PTA's ideas and form them into cohesive musical ideas. It's no wonder why he is loved by artists from all genres.

@@ -40,25 +40,26 @@ export default async function Writeup({ directory, slug }: BlogProp) {
   return (
     <div className="flex min-h-0 flex-1 flex-row items-stretch gap-8 overflow-hidden">
       <article className="prose prose-neutral min-h-0 min-w-0 flex-1 max-w-none overflow-y-auto pb-10 text-black font-['Helvetica',Arial,sans-serif] prose-headings:text-black prose-p:text-black prose-strong:text-black prose-a:text-black [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <h1>{data.title}</h1>
-        <div className="mb-6 gap-1 flex flex-col text-sm leading-[1.2]">
-          {data.tags?.length > 0 && <span>tags: {data.tags.join(", ")}</span>}
+        {/* Floated right so the writeup text wraps around the images. */}
+        {images.length > 0 && (
+          <div className="not-prose float-right mb-4 ml-8 w-2/5">
+            <ImageCarousel images={images} />
+          </div>
+        )}
 
-          {data.date && <span>date: {displayDate(String(data.date))}</span>}
+        <h1>{data.title}</h1>
+        {/* <div className="mb-6 gap-1 flex flex-col text-sm leading-[1.2]">
+          {data.tags?.length > 0 && <span>tags: {data.tags.join(", ")}</span>}
 
           {data.languages?.length > 0 && (
             <span>languages: {data.languages.join(", ")}</span>
           )}
-        </div>
+          {data.date && <span>date: {displayDate(String(data.date))}</span>}
+
+        </div> */}
 
         <ReactMarkdown>{body}</ReactMarkdown>
       </article>
-
-      {images.length > 0 && (
-        <div className="relative w-2/5 shrink-0 self-center">
-          <ImageCarousel images={images} />
-        </div>
-      )}
     </div>
   );
 }

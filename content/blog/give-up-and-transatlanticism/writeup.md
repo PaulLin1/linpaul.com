@@ -1,9 +1,9 @@
 ---
-title: "Give Up and Transatlanticism"
-date: "09-06-2026"
-tags: ["Music"]
+title: Give Up and Transatlanticism
+date: 09-06-2026
+tags:
+  - Music
 ---
-
 Before watching Twin Peaks, and even before visiting Mount Rainier and Pike Place Market in Seattle, I knew there was mythology in the Pacific Northwest. Maybe it was because Starbucks felt different from every other coffee shop I went to. Or maybe it was the CLYW edits set in forests soundtracked with lo-fi beats. Maybe it was the hipster movement that somehow pervaded my city in Metro Detroit.
 
 When listening to Give Up and Transatlanticism, I realized this is where all that came from. That there is an accent, a look, a sensibility that ties all of it together. A sadness of living at the edge of the world. When your girlfriend moves to the nation's capital and your collaborator lives in sunny LA.

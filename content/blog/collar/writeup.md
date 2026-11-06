@@ -1,29 +1,27 @@
 ---
-title: "Collar Case Study"
-date: "07-09-2026"
-tags: ["Fashion", "Photography"]
-layout: "case-study"
-aspect: "3/4"
-
+title: Collar Case Study
+date: 07-09-2026
+tags:
+  - Fashion
+  - Photography
 images:
-  - src: "1.webp"
-    caption: "Levi's Flannel, L.L.Bean Sweater"
-  - src: "2.webp"
-    caption: "Uniqlo Oxford Shirt, Patagonia Fleece"
-  - src: "3.webp"
-    caption: "Vintage V-Neck, G-Star Sherpa Denim Jacket"
-  - src: "4.webp"
-    caption: "Levi's Flannel, Ralph Lauren Bi-Swing Jacket"
-  - src: "5.webp"
-    caption: "Theory Sweater, Carhartt Field Jacket"
-  - src: "6.webp"
-    caption: "Shakawear Raglan, Levi's Waffle Long Sleeve"
-  - src: "7.webp"
-    caption: "GU Tank Top, Uniqlo Zip Up Hoodie"
-  - src: "8.webp"
-    caption: "Suit"
+  - src: collar-1.webp
+    caption: 'Levi''s Flannel, L.L.Bean Sweater'
+  - src: collar-2.webp
+    caption: 'Uniqlo Oxford Shirt, Patagonia Fleece'
+  - src: collar-3.webp
+    caption: 'Vintage V-Neck, G-Star Sherpa Denim Jacket'
+  - src: collar-4.webp
+    caption: 'Levi''s Flannel, Ralph Lauren Bi-Swing Jacket'
+  - src: collar-5.webp
+    caption: 'Theory Sweater, Carhartt Field Jacket'
+  - src: collar-6.webp
+    caption: 'Shakawear Raglan, Levi''s Waffle Long Sleeve'
+  - src: collar-7.webp
+    caption: 'GU Tank Top, Uniqlo Zip Up Hoodie'
+  - src: collar-8.webp
+    caption: Suit
 ---
-
 The bust is one of the oldest forms of portrait sculpture. It includes the head, neck, shoulders, and sometimes part of the chest. Why?
 
 Well, including the head is obvious. It has the face, the features, the expression. It wouldn't be fair to call one part of the body more important than another, but if the body has a center of gravity, it is the head.

@@ -1,11 +1,11 @@
 ---
-title: "Orbit"
-date: "2026"
-tags: [""]
-languages: ["React", "TypeScript"]
-
+title: Orbit
+date: '2026'
+tags: []
+languages:
+  - React
+  - TypeScript
 ---
-
 Your interests are always in motion. Some take center stage, while others drift away. Bring them back into orbit.
 
 ## Background

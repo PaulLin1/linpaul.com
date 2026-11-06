@@ -1,7 +1,8 @@
 ---
-title: "Elephants...Teeth Sinking into Heart"
-date: "09-15-2025"
-tags: ["Music"]
+title: Elephants...Teeth Sinking into Heart
+date: 09-15-2025
+tags:
+  - Music
 ---
 Writing about it is only a selfish excuse to return to Rachael Yamagata’s double album Elephants…Teeth Sinking Into Heart. Unlike most albums that I am nostalgic for, this one doesn’t transport me back to a single moment. My journey with it unfolded over years. Perhaps it started with Duet, an aptly named song that I first encountered in high school. Later in college, I discovered Horizon, a song I listened to during my commute from my dorm to my early morning classes. And after class, I would sing it to myself accompanied by electric guitar.
 After Elephants served as a soundtrack of maturity and time wasted, I started the second disc, Teeth Sinking Into Heart. My only memory of that side is a friend telling me how much he hated the song Don't as we listened to it while playing FIFA 24. I can see how Elephants would have more appeal than the second disc, but songs like Sidedish Friend and Pause the Tragic Ending are confrontational anthems that display Yamagata’s versatility as a songwriter.

@@ -1,12 +1,11 @@
 ---
-title: "Underachievers Please Try Harder"
-date: "09-14-2025"
-tags: ["Music"]
-
+title: Underachievers Please Try Harder
+date: 09-14-2025
+tags:
+  - Music
 images:
-  - src: "image.png"
+  - src: underachievers-please-try-harder-1.png
 ---
-
 It’s difficult to pin down the perspective Tracyanne Campbell, lead songwriter of Camera Obscura, writes from in her band's sophomore album Underachievers Please Try Harder. Scott Plagenhoef of Pitchfork calls this album an “adult approach to heartbreak,” yet Tracyanne sings with a childlike innocence over sad instrumentals that do not sound mature at all. Like the band's previous album Biggest Bluest Hi-Fi, this album builds upon the twee influences of Belle and Sebastian and other indie acts in Scotland. Instrumentation is often simple: “A Sister’s Social Agony” consists of only guitar, drums, bass, and the occasional “oo” contributed by the other members. It gets even sparser on “Your Picture,” one of my personal favorites, which features only fingerpicked acoustic guitar and a soft piano that accompanies it near the end. Despite this lack of complexity, each song is full of emotion.
 
 I feel like the “oo’s” are what define this album. While Biggest Bluest Hi-Fi sounded thin compared to other albums from the twee genre, like Tigermilk with its reverb and horn-filled sound, these background vocal melodies softly fill the space between guitar and jazz-inflected drums. Camera Obscura would later expand on this idea, using extensive string arrangements on the following album Let’s Get Out of This Country and mainly using backing vocals for effect, like on the bridge of “If Looks Could Kill.”

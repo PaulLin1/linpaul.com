@@ -19,14 +19,18 @@ export default function ImageCarousel({ images }: { images: CarouselImage[] }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <Image
-        src={image.src}
-        alt={image.caption ?? ""}
-        width={800}
-        height={600}
-        className="h-auto max-h-[calc(100dvh-10rem)] w-auto max-w-full object-contain"
-        priority={index === 0}
-      />
+      {/* Fixed-size frame: every image (tall phone screenshot or square) fits
+          inside the same box, so the carousel doesn't jump between slides. */}
+      <div className="relative aspect-[3/4] w-full">
+        <Image
+          src={image.src}
+          alt={image.caption ?? ""}
+          fill
+          sizes="(max-width: 768px) 100vw, 40vw"
+          className="object-contain"
+          priority={index === 0}
+        />
+      </div>
 
       <div className="flex items-center justify-between gap-3 text-sm">
         <p className="m-0 font-['Helvetica',Arial,sans-serif] text-sm text-black">

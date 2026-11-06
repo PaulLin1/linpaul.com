@@ -1,7 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
-import Link from "next/link";
+import FolderLink from "@/app/components/folder-link";
 
 interface FolderListProps {
   directory: string;
@@ -12,9 +12,19 @@ interface Project {
   title: string;
   date: string;
   tags: string[];
+  languages: string[];
 }
 
-// Blog front matter stores full dates as MM-DD-YYYY; show only the year.
+function cleanWords(words: unknown[]): string[] {
+  return words.map((word) => String(word ?? "").trim()).filter(Boolean);
+}
+
+function Badge({ word }: { word: string }) {
+  // return <span className="p-1 text-white bg-purple-400">{word}</span>;
+  return <span className="">{word}</span>;
+
+}
+
 const FULL_DATE = /^(\d{2})-(\d{2})-(\d{4})$/;
 
 export function displayDate(date: string) {
@@ -22,7 +32,9 @@ export function displayDate(date: string) {
 }
 
 function sortKeys(date: string) {
-  const parts = date.split(" - ").map((part) => part.trim().replace(FULL_DATE, "$3-$1-$2"));
+  const parts = date
+    .split(" - ")
+    .map((part) => part.trim().replace(FULL_DATE, "$3-$1-$2"));
   return { start: parts[0], end: parts[parts.length - 1] };
 }
 
@@ -51,7 +63,8 @@ async function fetchFiles(directory: string): Promise<Project[]> {
       slug: folder.name,
       title: data.title,
       date: String(data.date),
-      tags: data.tags ?? [],
+      tags: cleanWords(data.tags ?? []),
+      languages: cleanWords(data.languages ?? []),
     });
   }
 
@@ -60,23 +73,26 @@ async function fetchFiles(directory: string): Promise<Project[]> {
 
 export default async function FolderList({ directory }: FolderListProps) {
   const projects = await fetchFiles(directory);
-
   return (
     <ul className="list-none flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto pl-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {projects.map((project) => (
         <li key={project.slug}>
-          <Link
+          <FolderLink
             href={`/${directory.replace(/^content\//, "")}/${project.slug}`}
-            className="flex items-center justify-between gap-1  no-underline"
           >
             <h2 className="min-w-0">{project.title}</h2>
 
             <div className="flex shrink-0 items-center gap-2">
-              <span>{project.tags.join(", ")}</span>
+              <div className="flex items-center gap-1">
+                {/* {[...project.tags, ...project.languages].map((word) => (
+                  <Badge key={word} word={word} />
+                ))} */}
+                {[...project.tags, ...project.languages].join(', ')}
+              </div>
               <span>|</span>
               <p>{displayDate(project.date)}</p>
             </div>
-          </Link>
+          </FolderLink>
         </li>
       ))}
     </ul>

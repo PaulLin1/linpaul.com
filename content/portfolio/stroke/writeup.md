@@ -1,11 +1,14 @@
 ---
-title: "STROKE"
-date: "2025"
-tags: ["Research", "AI"]
-languages: ["Python", "PyTorch", "Unix"]
-
+title: STROKE
+date: '2025'
+tags:
+  - Research
+  - AI
+languages:
+  - Python
+  - PyTorch
+  - Unix
 ---
-
 A query-efficient score-based black-box adversarial attack that constructs perturbations from simple oriented rectangular occlusions.
 
 ## Background

@@ -36,12 +36,12 @@ export default function PanelLayout({
   function handleClick(e: React.MouseEvent) {
     const link = (e.target as HTMLElement).closest("a");
     const href = link?.getAttribute("href");
-    if (href && WRITEUP.test(href)) slideTo(0);
+    if (href && WRITEUP.test(href)) slideTo(35);
   }
 
   const isWriteup = WRITEUP.test(pathname);
   useEffect(() => {
-    if (!isWriteup) slideTo(50);
+    if (!isWriteup) slideTo(100-35);
   }, [isWriteup]);
 
   return (
