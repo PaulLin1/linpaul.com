@@ -16,7 +16,9 @@ interface BlogProp {
 export default async function Writeup({ directory, slug }: BlogProp) {
   "use cache";
 
-  const filePath = path.join(process.cwd(), directory, slug, "writeup.md");
+  // Statically scope the path to content/ so the build doesn't trace the whole project.
+  const section = directory.replace(/^content\//, "");
+  const filePath = path.join(process.cwd(), "content", section, slug, "writeup.md");
 
   let content: string;
 

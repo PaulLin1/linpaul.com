@@ -47,7 +47,9 @@ function compareDatesDesc(a: string, b: string) {
 async function fetchFiles(directory: string): Promise<Project[]> {
   "use cache";
 
-  const contentDir = path.join(process.cwd(), directory);
+  // Statically scope the path to content/ so the build doesn't trace the whole project.
+  const section = directory.replace(/^content\//, "");
+  const contentDir = path.join(process.cwd(), "content", section);
   const folders = await readdir(contentDir, { withFileTypes: true });
 
   const projects: Project[] = [];
